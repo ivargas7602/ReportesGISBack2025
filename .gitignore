@@ -1,0 +1,22 @@
+# Archivos de compilación
+*.class
+*.war
+
+# Configuración del IDE (Eclipse, IntelliJ, NetBeans, etc.)
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.nbproject/
+
+# Archivos de servidor
+logs/
+tmp/
+work/
+
+# Dependencias (si usas Maven o Gradle)
+target/
+*.jar
+*.war
+node_modules/
