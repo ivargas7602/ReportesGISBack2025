@@ -25,11 +25,20 @@ public class EnumeracionEquipos {
     private String OPCION;
     private Number DPNUM_EQUIP_CANTIDAD_ACTULIZADA;
     private Number DPNUM_EQUIP_NUMSUPER_ACTUALIZADA;
+    //Agregados
+    private Number DPNUM_CERTIFICADO;
+    private String DPNUM_NUM_CONT;
+    private String DPNUM_ANIO_CONT;
+    private Number DPNUM_GRUPOS;
+    private Number DPNUM_NUMSUPER;
     
     public EnumeracionEquipos(){
 	}
 
-    public EnumeracionEquipos(Number DPNUM_EQUIP_COD,Number DPNUM_CONTRA_COD, Number DPNUM_TIPO_COD, Number DPNUM_EQUIP_CANTIDAD, Number DPNUM_EQUIP_NUMINFER, Number DPNUM_EQUIP_NUMSUPER, Date DPNUM_EQUIP_FECHA, String DPNUM_EQUIP_SECTOR, String DPRUS_CUENTA, Number DPNUM_CLAS_COD, String OPCION,Number DPNUM_EQUIP_CANTIDAD_ACTULIZADA,Number DPNUM_EQUIP_NUMSUPER_ACTUALIZADA) {
+    public EnumeracionEquipos(Number DPNUM_EQUIP_COD,Number DPNUM_CONTRA_COD, Number DPNUM_TIPO_COD, Number DPNUM_EQUIP_CANTIDAD, 
+            Number DPNUM_EQUIP_NUMINFER, Number DPNUM_EQUIP_NUMSUPER, Date DPNUM_EQUIP_FECHA,
+            String DPNUM_EQUIP_SECTOR, String DPRUS_CUENTA, Number DPNUM_CLAS_COD, String OPCION,Number DPNUM_EQUIP_CANTIDAD_ACTULIZADA,
+            Number DPNUM_EQUIP_NUMSUPER_ACTUALIZADA, Number DPNUM_CERTIFICADO, String DPNUM_NUM_CONT, String DPNUM_ANIO_CONT, Number DPNUM_GRUPOS, Number DPNUM_NUMSUPER) {
         this.setDPNUM_EQUIP_COD(DPNUM_EQUIP_COD);
         this.setDPNUM_CONTRA_COD(DPNUM_CONTRA_COD);
         this.setDPNUM_TIPO_COD(DPNUM_TIPO_COD);
@@ -43,8 +52,57 @@ public class EnumeracionEquipos {
         this.setOPCION(OPCION);
         this.setDPNUM_EQUIP_CANTIDAD_ACTULIZADA(DPNUM_EQUIP_CANTIDAD_ACTULIZADA);
         this.setDPNUM_EQUIP_NUMSUPER_ACTUALIZADA(DPNUM_EQUIP_NUMSUPER_ACTUALIZADA);
+        //agregado
+        this.setDPNUM_CERTIFICADO(DPNUM_CERTIFICADO); 
+        this.setDPNUM_NUM_CONT(DPNUM_NUM_CONT); 
+        this.setDPNUM_ANIO_CONT(DPNUM_ANIO_CONT); 
+        this.setDPNUM_GRUPOS(DPNUM_GRUPOS); 
+        this.setDPNUM_NUMSUPER(DPNUM_NUMSUPER); 
+    }
+    
+    //agregados 
+    public void setDPNUM_NUMSUPER(Number DPNUM_NUMSUPER) {
+        this.DPNUM_NUMSUPER = DPNUM_NUMSUPER;
+    }
+    
+    public Number getDPNUM_NUMSUPER() {
+        return DPNUM_NUMSUPER;
+    }
+    
+    public void setDPNUM_CERTIFICADO(Number DPNUM_CERTIFICADO) {
+        this.DPNUM_CERTIFICADO = DPNUM_CERTIFICADO;
+    }
+    
+    public Number getDPNUM_CERTIFICADO() {
+        return DPNUM_CERTIFICADO;
     }
 
+    public void setDPNUM_NUM_CONT(String DPNUM_NUM_CONT) {
+        this.DPNUM_NUM_CONT = DPNUM_NUM_CONT;
+    }
+    
+    public String getDPNUM_NUM_CONT() {
+        return DPNUM_NUM_CONT;
+    }
+    
+    public void setDPNUM_ANIO_CONT(String DPNUM_ANIO_CONT) {
+        this.DPNUM_ANIO_CONT = DPNUM_ANIO_CONT;
+    }
+    
+    public String getDPNUM_ANIO_CONT() {
+        return DPNUM_ANIO_CONT;
+    }
+    
+    public void setDPNUM_GRUPOS(Number DPNUM_GRUPOS) {
+        this.DPNUM_GRUPOS = DPNUM_GRUPOS;
+    }
+    
+    public Number getDPNUM_GRUPOS() {
+        return DPNUM_GRUPOS;
+    }
+    
+    //Fin agregados
+    
     public void setDPNUM_EQUIP_CANTIDAD_ACTULIZADA(Number DPNUM_EQUIP_CANTIDAD_ACTULIZADA) {
         this.DPNUM_EQUIP_CANTIDAD_ACTULIZADA = DPNUM_EQUIP_CANTIDAD_ACTULIZADA;
     }

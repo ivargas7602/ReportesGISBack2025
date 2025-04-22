@@ -13,15 +13,15 @@ import java.util.Date;
 public class ReporteEquiposDepartamentos {
     private Number CODIGO;
     private String DEPARTAMENTO;
-    private Number DIFERENCIA;
+    private Number CANTIDAD;
     private Date FECHA;
     
     public ReporteEquiposDepartamentos(){}
     
-    public ReporteEquiposDepartamentos(Number CODIGO, String DEPARTAMENTO, Number DIFERENCIA,Date FECHA) {
+    public ReporteEquiposDepartamentos(Number CODIGO, String DEPARTAMENTO, Number CANTIDAD,Date FECHA) {
         this.setCODIGO(CODIGO);
         this.setDEPARTAMENTO(DEPARTAMENTO);
-        this.setDIFERENCIA(DIFERENCIA);
+        this.setCANTIDAD(CANTIDAD);
         this.setFECHA(FECHA);
     }
 
@@ -43,8 +43,8 @@ public class ReporteEquiposDepartamentos {
         this.DEPARTAMENTO = DEPARTAMENTO;
     }
 
-    public void setDIFERENCIA(Number DIFERENCIA) {
-        this.DIFERENCIA = DIFERENCIA;
+    public void setCANTIDAD(Number CANTIDAD) {
+        this.CANTIDAD = CANTIDAD;
     }
 
     public Number getCODIGO() {
@@ -55,7 +55,7 @@ public class ReporteEquiposDepartamentos {
         return DEPARTAMENTO;
     }
 
-    public Number getDIFERENCIA() {
-        return DIFERENCIA;
+    public Number getCANTIDAD() {
+        return CANTIDAD;
     }
 }

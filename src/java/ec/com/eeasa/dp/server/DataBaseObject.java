@@ -596,7 +596,7 @@ public class DataBaseObject {
                         java.util.Date dt = (java.util.Date) parametros.get(i - 1);
                         stmSelect.setObject(i + 1, new java.sql.Timestamp(dt.getTime()));
                     } else if (parametros.get(i - 1) != null && parametros.get(i - 1) instanceof Integer) {
-                        stmSelect.setObject(i + 1, parametros.get(i - 1), Types.SMALLINT);
+                        stmSelect.setObject(i + 1, parametros.get(i - 1), Types.INTEGER);
                     } else if (parametros.get(i - 1) != null && parametros.get(i - 1) instanceof Double) {
                         stmSelect.setObject(i + 1, parametros.get(i - 1), Types.DOUBLE);
                     } else if (parametros.get(i - 1) != null && parametros.get(i - 1) instanceof String[][]) {

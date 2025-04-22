@@ -512,6 +512,11 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         return objReporteBrechas.gestionarPermisosNumeracion(usuarioNombre, codModulo, codClase, operacion);
     }
 
+    public ArrayList<HashMap<String, Object>> debeGenerarTicketEquipo(int equipo) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.debeGenerarTicketEquipo(equipo);
+    }
+    
     public ArrayList<HashMap<String, Object>> selectReporteEquiposUsuarioFechas(String codigoU) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectReporteEquiposUsuarioFechas(codigoU);
@@ -537,14 +542,14 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         return objReporteBrechas.selectEqLuminariasRepetidos(fecha);
     }
 
-    public ArrayList<HashMap<String, Object>> selectHistoricoRepetidosProvincias(Date fecha, Date fecha2, Date fecha3, int opcion) throws Exception {
+    public ArrayList<HashMap<String, Object>> selectActualRepetidosProvincias(int opcion) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
-        return objReporteBrechas.selectHistoricoRepetidosProvincias(fecha, fecha2, fecha3, opcion);
+        return objReporteBrechas.selectActualRepetidosProvincias(opcion);
     }
 
-    public ArrayList<HashMap<String, Object>> selectHistoricoRepetidosDepartamentos(Date fecha, Date fecha2, Date fecha3, int opcion) throws Exception {
+    public ArrayList<HashMap<String, Object>> selectActualRepetidosDepartamentos(int opcion) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
-        return objReporteBrechas.selectHistoricoRepetidosDepartamentos(fecha, fecha2, fecha3, opcion);
+        return objReporteBrechas.selectActualRepetidosDepartamentos(opcion);
     }
 
     public String insertarReporteEquiposRepetidos(
@@ -618,7 +623,80 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.gestionarRolesContratistas(usuarioNombre, permiso);
     }
+    
+    public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasDepartamento(Date fecha, Date fecha2, Number opcion) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectRepetidosEstructurasDepartamento(fecha, fecha2, opcion);
+    }
+    public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasProvincias(Date fecha, Date fecha2, Number opcion) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectRepetidosEstructurasProvincias(fecha, fecha2, opcion);
+    }
+    
+    public String insertarReportePostesRepetidosProv(ReporteEquiposDepartamentos obj_rep_trafos_d) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        String result = objReporteBrechas.insertarPostesRepetidosProv(obj_rep_trafos_d);
+        if (!result.isEmpty()) {
+            return result;
+        } else {
+            return "0";
+        }
+    }
 
+    public String insertarCuchillasRepetidosProv(ReporteEquiposDepartamentos obj_rep_trafos_d) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        String result = objReporteBrechas.insertarCuchillasRepetidosProv(obj_rep_trafos_d);
+        if (!result.isEmpty()) {
+            return result;
+        } else {
+            return "0";
+        }
+    }
+
+    public String insertarFusiblesRepetidosProv(ReporteEquiposDepartamentos obj_rep_trafos_d) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        String result = objReporteBrechas.insertarFusiblesRepetidosProv(obj_rep_trafos_d);
+        if (!result.isEmpty()) {
+            return result;
+        } else {
+            return "0";
+        }
+    }
+
+    public String insertarLuminariasRepetidosProv(ReporteEquiposDepartamentos obj_rep_trafos_d) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        String result = objReporteBrechas.insertarLuminariasRepetidosProv(obj_rep_trafos_d);
+        if (!result.isEmpty()) {
+            return result;
+        } else {
+            return "0";
+        }
+    }
+    
+    public ArrayList<HashMap<String, Object>> selectCertificacionesBusquedaControl(Number codigo, Number nmin, Number nmax) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectCertificacionesBusquedaControl(codigo, nmin, nmax);
+    }
+
+    public ArrayList<HashMap<String, Object>> selectCertificacionPorNumeracion(Number codigo, Number valor) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectCertificacionPorNumeracion(codigo, valor);
+    }
+    
+    public ArrayList<HashMap<String, Object>> selectContrato() throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectContrato();
+    }
+    
+    public ArrayList<HashMap<String, Object>> selectSeccionesNumeracion() throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectSeccionesNumeracion();
+    }
+    
+    public ArrayList<HashMap<String, Object>> selectObjExcluidosSobrecargados() throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectObjExcluidosSobrecargados();
+    }
     //Fin Agregado por ANavas 16/12/2024
     public String insertarPE(String cuenta, String fecha, String coment, String opcion) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());

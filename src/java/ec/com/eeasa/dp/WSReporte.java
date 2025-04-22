@@ -1369,6 +1369,12 @@ public class WSReporte {
             objEnumeracion.setDPNUM_EQUIP_SECTOR(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_SECTOR") ? null : objrep_EnumeracionObject.getString("DPNUM_EQUIP_SECTOR"));
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_CLAS_COD(objrep_EnumeracionObject.isNull("DPNUM_CLAS_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_CLAS_COD"));
+            //agregados
+            objEnumeracion.setDPNUM_CERTIFICADO(objrep_EnumeracionObject.isNull("DPNUM_CERTIFICADO") ? null : objrep_EnumeracionObject.getInt("DPNUM_CERTIFICADO")); 
+            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT")); 
+            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT")); 
+            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS")); 
+            //Fin agregados
             objEnumeracion.setOPCION(objrep_EnumeracionObject.isNull("OPCION") ? null : objrep_EnumeracionObject.getString("OPCION"));
             String result = reultReporteImpl.insertarNumeracionEquipo(objEnumeracion);
             HashMap<String, Object> hm = new HashMap<String, Object>();
@@ -1401,6 +1407,7 @@ public class WSReporte {
         return outDataC.toString();
     }
 
+   
     @PUT
     @Path("/actualizarNumeracionEquipo")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1423,6 +1430,11 @@ public class WSReporte {
             objEnumeracion.setDPNUM_EQUIP_SECTOR(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_SECTOR") ? null : objrep_EnumeracionObject.getString("DPNUM_EQUIP_SECTOR"));
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_CLAS_COD(objrep_EnumeracionObject.isNull("DPNUM_CLAS_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_CLAS_COD"));
+            //Agregado
+            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT")); 
+            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT")); 
+            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS")); 
+
             String result = reultReporteImpl.actualizarNumeracionEquipo(objEnumeracion);
             HashMap<String, Object> hm = new HashMap<String, Object>();
             hm.put("RESULTADO", result);
@@ -1506,8 +1518,7 @@ public class WSReporte {
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_EQUIP_COD(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_EQUIP_COD"));
             objEnumeracion.setDPNUM_EQUIP_CANTIDAD_ACTULIZADA(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_CANTIDAD_ACTULIZADA") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_CANTIDAD_ACTULIZADA"));
-            objEnumeracion.setDPNUM_EQUIP_NUMSUPER_ACTUALIZADA(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA"));
-
+            objEnumeracion.setDPNUM_EQUIP_NUMSUPER_ACTUALIZADA(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA"));            
             String result = reultReporteImpl.insertarNumeracionDevuelta(objEnumeracion);
             HashMap<String, Object> hm = new HashMap<String, Object>();
             hm.put("RESULTADO", result);
@@ -1560,6 +1571,12 @@ public class WSReporte {
             objEnumeracion.setDPNUM_EQUIP_SECTOR(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_SECTOR") ? null : objrep_EnumeracionObject.getString("DPNUM_EQUIP_SECTOR"));
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_CLAS_COD(objrep_EnumeracionObject.isNull("DPNUM_CLAS_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_CLAS_COD"));
+            //agregados 
+            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT")); 
+            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT")); 
+            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS")); 
+            objEnumeracion.setDPNUM_NUMSUPER(objrep_EnumeracionObject.isNull("DPNUM_NUMSUPER") ? null : objrep_EnumeracionObject.getInt("DPNUM_NUMSUPER")); 
+            //Fin agregados
             String result = reultReporteImpl.insertarNumeracionEquipoDev(objEnumeracion);
             HashMap<String, Object> hm = new HashMap<String, Object>();
             hm.put("RESULTADO", result);
@@ -1738,6 +1755,24 @@ public class WSReporte {
 
         return outDataC; // Retorna el resultado en formato JSON
     }
+    
+    @GET
+    @Path("/generaTicket")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String debeGenerarTicketEquipo(@QueryParam("equipo") String equipo) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            hmReportesC = objReporte.debeGenerarTicketEquipo(Integer.parseInt(equipo));
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+
+        return outDataC.toString();
+    }
 
     @POST
     @Path("/reporteNumeracionSectores")
@@ -1818,7 +1853,7 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
     @Path("/cuchillasRepetidosFecha")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1840,7 +1875,7 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
     @Path("/fusiblesRepetidosFecha")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1862,7 +1897,7 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
     @Path("/luminariasRepetidosFecha")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1884,27 +1919,26 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
-    @Path("/historicoRepetidosProvincias")
+    @Path("/actualRepetidosProvincias")
     @Produces({MediaType.APPLICATION_JSON})
-    public String selectHistoricoRepetidosProvincias(@QueryParam("fecha") String fecha, @QueryParam("fecha2") String fecha2, 
-            @QueryParam("fecha3") String fecha3, @QueryParam("opcion") String opcion) {
+    public String selectActualRepetidosProvincias(@QueryParam("opcion") String opcion) {
         ReporteImplement objReporte = new ReporteImplement();
         ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
         String outDataC = "";
         try {
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            /*SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaR = null;
             Date fechaR2 = null;
             Date fechaR3 = null;
-            if ((fecha != "" && !fecha.trim().isEmpty()) && (fecha2 != "" && !fecha2.trim().isEmpty()) && (fecha3 != "" && !fecha3.trim().isEmpty())) {
+            if (fecha != "" && !fecha.trim().isEmpty()) {
                 fechaR = fecha != null ? formato.parse(fecha) : null;
                 fechaR2 = fecha2 != null ? formato.parse(fecha2) : null;
                 fechaR3 = fecha3 != null ? formato.parse(fecha3) : null;
-            }
+            }*/
             int opcionNumber = Integer.parseInt(opcion);
-            hmReportesC = objReporte.selectHistoricoRepetidosProvincias(fechaR, fechaR2, fechaR3, opcionNumber);
+            hmReportesC = objReporte.selectActualRepetidosProvincias( opcionNumber);
             Formatter fm = new Formatter("JSON", hmReportesC);
             outDataC = fm.getData().toString();
         } catch (Exception ex) {
@@ -1912,27 +1946,27 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
-    @Path("/historicoRepetidosDepartamentos")
+    @Path("/actualRepetidosDepartamentos")
     @Produces({MediaType.APPLICATION_JSON})
-    public String selectHistoricoRepetidosDepartamentos(@QueryParam("fecha") String fecha, @QueryParam("fecha2") String fecha2, 
-            @QueryParam("fecha3") String fecha3, @QueryParam("opcion") String opcion) {
+    public String selectActualRepetidosDepartamentos(@QueryParam("opcion") String opcion) {
         ReporteImplement objReporte = new ReporteImplement();
         ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
         String outDataC = "";
         try {
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            /*SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaR = null;
             Date fechaR2 = null;
             Date fechaR3 = null;
-            if ((fecha != "" && !fecha.trim().isEmpty()) && (fecha2 != "" && !fecha2.trim().isEmpty()) && (fecha3 != "" && !fecha3.trim().isEmpty())) {
+            if (fecha != "" && !fecha.trim().isEmpty()) {
+                //if ((fecha != "" && !fecha.trim().isEmpty()) && (fecha2 != "" && !fecha2.trim().isEmpty()) && (fecha3 != "" && !fecha3.trim().isEmpty())) {
                 fechaR = fecha != null ? formato.parse(fecha) : null;
-                fechaR2 = fecha2 != null ? formato.parse(fecha2) : null;
+                /*fechaR2 = fecha2 != null ? formato.parse(fecha2) : null;
                 fechaR3 = fecha3 != null ? formato.parse(fecha3) : null;
-            }
+            }*/
             int opcionNumber = Integer.parseInt(opcion);
-            hmReportesC = objReporte.selectHistoricoRepetidosDepartamentos(fechaR, fechaR2, fechaR3, opcionNumber);
+            hmReportesC = objReporte.selectActualRepetidosDepartamentos(opcionNumber);
             Formatter fm = new Formatter("JSON", hmReportesC);
             outDataC = fm.getData().toString();
         } catch (Exception ex) {
@@ -1940,7 +1974,7 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @POST
     @Path("/crearReporteEquiposRepetidos")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1969,7 +2003,7 @@ public class WSReporte {
             //return e.getMessage();
         }
     }
-    
+
     @POST
     @Path("/insertarReportePostesRepetidos")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1984,7 +2018,7 @@ public class WSReporte {
 
             objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
             objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
-            objreporte_b.setDIFERENCIA(objrep_brechasObject.isNull("DIFERENCIA") ? null : objrep_brechasObject.getInt("DIFERENCIA"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
             String result = reultReporteImpl.insertarReportePostesRepetidos(objreporte_b);
@@ -1999,7 +2033,7 @@ public class WSReporte {
             //return e.getMessage();
         }
     }
-    
+
     @POST
     @Path("/insertarReporteCuchillasRepetidos")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2014,7 +2048,7 @@ public class WSReporte {
 
             objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
             objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
-            objreporte_b.setDIFERENCIA(objrep_brechasObject.isNull("DIFERENCIA") ? null : objrep_brechasObject.getInt("DIFERENCIA"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
             String result = reultReporteImpl.insertarCuchillasRepetidos(objreporte_b);
@@ -2029,7 +2063,7 @@ public class WSReporte {
             //return e.getMessage();
         }
     }
-    
+
     @POST
     @Path("/insertarReporteFusiblesRepetidos")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2044,7 +2078,7 @@ public class WSReporte {
 
             objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
             objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
-            objreporte_b.setDIFERENCIA(objrep_brechasObject.isNull("DIFERENCIA") ? null : objrep_brechasObject.getInt("DIFERENCIA"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
             String result = reultReporteImpl.insertarFusiblesRepetidos(objreporte_b);
@@ -2059,7 +2093,7 @@ public class WSReporte {
             //return e.getMessage();
         }
     }
-    
+
     @POST
     @Path("/insertarReporteLuminariasRepetidos")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2074,7 +2108,7 @@ public class WSReporte {
 
             objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
             objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
-            objreporte_b.setDIFERENCIA(objrep_brechasObject.isNull("DIFERENCIA") ? null : objrep_brechasObject.getInt("DIFERENCIA"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
             String result = reultReporteImpl.insertarLuminariasRepetidos(objreporte_b);
@@ -2089,7 +2123,7 @@ public class WSReporte {
             //return e.getMessage();
         }
     }
-    
+
     @GET
     @Path("/cantidadGlobalRepetidos")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2112,7 +2146,7 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
     @Path("/existenDevoluciones")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2129,8 +2163,7 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
-    
+
     @GET
     @Path("/GestionContratistaPermiso")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2145,10 +2178,9 @@ public class WSReporte {
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
-        System.out.println(outDataC.toString());
         return outDataC.toString();
     }
-    
+
     @POST
     @Path("/gestionRolesContratistas")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2178,6 +2210,268 @@ public class WSReporte {
         }
 
         return outDataC; // Retorna el resultado en formato JSON
+    }
+
+    @GET
+    @Path("/estructurasRepetidosDepartamento")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectRepetidosEstructurasDepartamento(@QueryParam("fecha") String fecha, @QueryParam("fecha2") String fecha2, @QueryParam("opcion") String opcion) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date fechaR = null;
+            Date fecha2R = null;
+            Number opcionR = opcion != null ? Integer.parseInt(opcion) : null;
+            if ((fecha != "" && !fecha.trim().isEmpty()) && (fecha2 != "" && !fecha2.trim().isEmpty())) {
+                fechaR = fecha != null ? formato.parse(fecha) : null;
+                fecha2R = fecha2 != null ? formato.parse(fecha2) : null;
+            }
+            hmReportesC = objReporte.selectRepetidosEstructurasDepartamento(fechaR, fecha2R, opcionR);
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outDataC.toString();
+    }
+
+    @GET
+    @Path("/estructurasRepetidosProvincias")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectRepetidosEstructurasProvincias(@QueryParam("fecha") String fecha, @QueryParam("fecha2") String fecha2, @QueryParam("opcion") String opcion) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date fechaR = null;
+            Date fecha2R = null;
+            Number opcionR = opcion != null ? Integer.parseInt(opcion) : null;
+            if ((fecha != "" && !fecha.trim().isEmpty()) && (fecha2 != "" && !fecha2.trim().isEmpty())) {
+                fechaR = fecha != null ? formato.parse(fecha) : null;
+                fecha2R = fecha2 != null ? formato.parse(fecha2) : null;
+            }
+            hmReportesC = objReporte.selectRepetidosEstructurasProvincias(fechaR, fecha2R, opcionR);
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outDataC.toString();
+    }
+
+    @POST
+    @Path("/insertarReportePostesRepetidosProv")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String insertarReportePostesRepetidosProv(String save_rep_trafos) {
+        try {
+            ReporteImplement reultReporteImpl = new ReporteImplement();
+            JSONArray jsonArray = new JSONArray(save_rep_trafos);
+            JSONObject objrep_brechasObject = jsonArray.getJSONObject(0);
+
+            ReporteEquiposDepartamentos objreporte_b = new ReporteEquiposDepartamentos();
+
+            objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
+            objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
+            String result = reultReporteImpl.insertarReportePostesRepetidosProv(objreporte_b);
+            HashMap<String, Object> hm = new HashMap<String, Object>();
+            hm.put("Codigo", result);
+            Formatter fm = new Formatter("JSON", hm);
+            return fm.getData().toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Formatter fm = new Formatter("JSON", ex.getMessage());
+            return fm.getData().toString();
+            //return e.getMessage();
+        }
+    }
+
+    @POST
+    @Path("/insertarReporteCuchillasRepetidosProv")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String insertarCuchillasRepetidosProv(String save_rep_trafos) {
+        try {
+            ReporteImplement reultReporteImpl = new ReporteImplement();
+            JSONArray jsonArray = new JSONArray(save_rep_trafos);
+            JSONObject objrep_brechasObject = jsonArray.getJSONObject(0);
+
+            ReporteEquiposDepartamentos objreporte_b = new ReporteEquiposDepartamentos();
+
+            objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
+            objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
+            String result = reultReporteImpl.insertarCuchillasRepetidosProv(objreporte_b);
+            HashMap<String, Object> hm = new HashMap<String, Object>();
+            hm.put("Codigo", result);
+            Formatter fm = new Formatter("JSON", hm);
+            return fm.getData().toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Formatter fm = new Formatter("JSON", ex.getMessage());
+            return fm.getData().toString();
+            //return e.getMessage();
+        }
+    }
+
+    @POST
+    @Path("/insertarReporteFusiblesRepetidosProv")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String insertarFusiblesRepetidosProv(String save_rep_trafos) {
+        try {
+            ReporteImplement reultReporteImpl = new ReporteImplement();
+            JSONArray jsonArray = new JSONArray(save_rep_trafos);
+            JSONObject objrep_brechasObject = jsonArray.getJSONObject(0);
+
+            ReporteEquiposDepartamentos objreporte_b = new ReporteEquiposDepartamentos();
+
+            objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
+            objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
+            String result = reultReporteImpl.insertarFusiblesRepetidosProv(objreporte_b);
+            HashMap<String, Object> hm = new HashMap<String, Object>();
+            hm.put("Codigo", result);
+            Formatter fm = new Formatter("JSON", hm);
+            return fm.getData().toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Formatter fm = new Formatter("JSON", ex.getMessage());
+            return fm.getData().toString();
+            //return e.getMessage();
+        }
+    }
+
+    @POST
+    @Path("/insertarReporteLuminariasRepetidosProv")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String insertarLuminariasRepetidosProv(String save_rep_trafos) {
+        try {
+            ReporteImplement reultReporteImpl = new ReporteImplement();
+            JSONArray jsonArray = new JSONArray(save_rep_trafos);
+            JSONObject objrep_brechasObject = jsonArray.getJSONObject(0);
+
+            ReporteEquiposDepartamentos objreporte_b = new ReporteEquiposDepartamentos();
+
+            objreporte_b.setCODIGO(objrep_brechasObject.isNull("CODIGO") ? null : objrep_brechasObject.getInt("CODIGO"));
+            objreporte_b.setDEPARTAMENTO(objrep_brechasObject.isNull("DEPARTAMENTO") ? null : objrep_brechasObject.getString("DEPARTAMENTO"));
+            objreporte_b.setCANTIDAD(objrep_brechasObject.isNull("CANTIDAD") ? null : objrep_brechasObject.getInt("CANTIDAD"));
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            objreporte_b.setFECHA(objrep_brechasObject.isNull("FECHA") ? null : formato.parse(objrep_brechasObject.get("FECHA").toString()));
+            String result = reultReporteImpl.insertarLuminariasRepetidosProv(objreporte_b);
+            HashMap<String, Object> hm = new HashMap<String, Object>();
+            hm.put("Codigo", result);
+            Formatter fm = new Formatter("JSON", hm);
+            return fm.getData().toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Formatter fm = new Formatter("JSON", ex.getMessage());
+            return fm.getData().toString();
+            //return e.getMessage();
+        }
+    }
+    
+    
+    @GET
+    @Path("/certificacionesNumeracion")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectCertificacionesBusquedaControl(@QueryParam("codigo") String codigoP, @QueryParam("nmin") String nminP, @QueryParam("nmax") String nmaxP) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            Number codigo = codigoP != null ? Integer.parseInt(codigoP) : null;
+            Number nmin = nminP != null ? Integer.parseInt(nminP) : null;
+            Number nmax = nmaxP != null ? Integer.parseInt(nmaxP) : null;            
+            hmReportesC = objReporte.selectCertificacionesBusquedaControl(codigo, nmin, nmax);
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outDataC.toString();
+    }
+    
+    @GET
+    @Path("/buscarCertificacionPorNumero")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectCertificacionPorNumeracion(@QueryParam("codigo") String codigoP, @QueryParam("valor") String valorP) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            Number codigo = codigoP != null ? Integer.parseInt(codigoP) : null;
+            Number valor = valorP != null ? Integer.parseInt(valorP) : null;
+            hmReportesC = objReporte.selectCertificacionPorNumeracion(codigo, valor);
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outDataC.toString();
+    }
+    
+    
+    @GET
+    @Path("/contratos")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectContrato() {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            hmReportesC = objReporte.selectContrato();
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outDataC.toString();
+    }
+    
+    @GET
+    @Path("/seccionesNumeracion")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectSeccionesNumeracion() {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            hmReportesC = objReporte.selectSeccionesNumeracion();
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outDataC.toString();
+    }
+    
+    @GET
+    @Path("/objetosExcluidosCargabilidad")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectObjExcluidosSobrecargados() {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            hmReportesC = objReporte.selectObjExcluidosSobrecargados();
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outDataC.toString();
     }
     
     //Fin Agregado por ANavas 16/12/2024
