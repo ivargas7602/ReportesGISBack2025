@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package ec.com.eeasa.dp;
-
 //import ec.com.eeasa.dp.db.ReporteUsuario;
+
 import ec.com.eeasa.dp.db.AlumbradoPublico;
 import ec.com.eeasa.dp.db.Contratistas;
 import ec.com.eeasa.dp.db.EnumeracionEquipos;
@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 //import java.util.logging.Level;
@@ -37,10 +38,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -909,7 +914,8 @@ public class WSReporte {
             Formatter fm = new Formatter("JSON", hmReportesC);
             outDataC = fm.getData().toString();
         } catch (Exception ex) {
-            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace();
+            throw new WebApplicationException("Error al obtener datos del trafo", Response.Status.INTERNAL_SERVER_ERROR);
         }
 
         return outDataC.toString();
@@ -1370,10 +1376,10 @@ public class WSReporte {
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_CLAS_COD(objrep_EnumeracionObject.isNull("DPNUM_CLAS_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_CLAS_COD"));
             //agregados
-            objEnumeracion.setDPNUM_CERTIFICADO(objrep_EnumeracionObject.isNull("DPNUM_CERTIFICADO") ? null : objrep_EnumeracionObject.getInt("DPNUM_CERTIFICADO")); 
-            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT")); 
-            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT")); 
-            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS")); 
+            objEnumeracion.setDPNUM_CERTIFICADO(objrep_EnumeracionObject.isNull("DPNUM_CERTIFICADO") ? null : objrep_EnumeracionObject.getInt("DPNUM_CERTIFICADO"));
+            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT"));
+            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT"));
+            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS"));
             //Fin agregados
             objEnumeracion.setOPCION(objrep_EnumeracionObject.isNull("OPCION") ? null : objrep_EnumeracionObject.getString("OPCION"));
             String result = reultReporteImpl.insertarNumeracionEquipo(objEnumeracion);
@@ -1407,7 +1413,6 @@ public class WSReporte {
         return outDataC.toString();
     }
 
-   
     @PUT
     @Path("/actualizarNumeracionEquipo")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1431,9 +1436,9 @@ public class WSReporte {
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_CLAS_COD(objrep_EnumeracionObject.isNull("DPNUM_CLAS_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_CLAS_COD"));
             //Agregado
-            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT")); 
-            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT")); 
-            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS")); 
+            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT"));
+            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT"));
+            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS"));
 
             String result = reultReporteImpl.actualizarNumeracionEquipo(objEnumeracion);
             HashMap<String, Object> hm = new HashMap<String, Object>();
@@ -1498,9 +1503,9 @@ public class WSReporte {
 
     @POST
     @Path("/insertarNumeracionDevuelta")
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public String insertarNumeracionDevuelta(String save_enumEquipos) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response insertarNumeracionDevuelta(String save_enumEquipos) {
         try {
             ReporteImplement reultReporteImpl = new ReporteImplement();
             JSONArray jsonArray = new JSONArray(save_enumEquipos);
@@ -1512,23 +1517,34 @@ public class WSReporte {
             objEnumeracion.setDPNUM_EQUIP_CANTIDAD(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_CANTIDAD") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_CANTIDAD"));
             objEnumeracion.setDPNUM_EQUIP_NUMINFER(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_NUMINFER") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_NUMINFER"));
             objEnumeracion.setDPNUM_EQUIP_NUMSUPER(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_NUMSUPER") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_NUMSUPER"));
+
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             objEnumeracion.setDPNUM_EQUIP_FECHA(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_FECHA") ? null : formato.parse(objrep_EnumeracionObject.get("DPNUM_EQUIP_FECHA").toString()));
+
             objEnumeracion.setDPNUM_EQUIP_SECTOR(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_SECTOR") ? null : objrep_EnumeracionObject.getString("DPNUM_EQUIP_SECTOR"));
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_EQUIP_COD(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_EQUIP_COD"));
             objEnumeracion.setDPNUM_EQUIP_CANTIDAD_ACTULIZADA(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_CANTIDAD_ACTULIZADA") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_CANTIDAD_ACTULIZADA"));
-            objEnumeracion.setDPNUM_EQUIP_NUMSUPER_ACTUALIZADA(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA"));            
+            objEnumeracion.setDPNUM_EQUIP_NUMSUPER_ACTUALIZADA(objrep_EnumeracionObject.isNull("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_NUMSUPER_ACTUALIZADA"));
+            objEnumeracion.setDPNUM_EQUIP_NUMSUPER_ACTUAL(
+                    objrep_EnumeracionObject.isNull("DPNUM_EQUIP_NUMSUPER_ACTUAL") ? null : objrep_EnumeracionObject.getDouble("DPNUM_EQUIP_NUMSUPER_ACTUAL")
+            );
+
+            // Ejecutar lógica
             String result = reultReporteImpl.insertarNumeracionDevuelta(objEnumeracion);
-            HashMap<String, Object> hm = new HashMap<String, Object>();
-            hm.put("RESULTADO", result);
-            Formatter fm = new Formatter("JSON", hm);
-            return fm.getData().toString();
+
+            // Retornar un Map que se convierte en JSON automáticamente
+            String jsonResponse = "{\"RESULTADO\":\"" + result + "\"}";
+            return Response
+                    .ok(jsonResponse, MediaType.APPLICATION_JSON_TYPE.withCharset("UTF-8"))
+                    .build();
+
         } catch (Exception ex) {
-            ex.printStackTrace();
-            Formatter fm = new Formatter("JSON", ex.getMessage());
-            return fm.getData().toString();
-            //return e.getMessage();
+            String errorJson = "{\"RESULTADO\":\"ERROR\",\"MENSAJE\":\"" + ex.getMessage().replace("\"", "\\\"") + "\"}";
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(errorJson)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
         }
     }
 
@@ -1572,11 +1588,15 @@ public class WSReporte {
             objEnumeracion.setDPRUS_CUENTA(objrep_EnumeracionObject.isNull("DPRUS_CUENTA") ? null : objrep_EnumeracionObject.getString("DPRUS_CUENTA"));
             objEnumeracion.setDPNUM_CLAS_COD(objrep_EnumeracionObject.isNull("DPNUM_CLAS_COD") ? null : objrep_EnumeracionObject.getInt("DPNUM_CLAS_COD"));
             //agregados 
-            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT")); 
-            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT")); 
-            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS")); 
-            objEnumeracion.setDPNUM_NUMSUPER(objrep_EnumeracionObject.isNull("DPNUM_NUMSUPER") ? null : objrep_EnumeracionObject.getInt("DPNUM_NUMSUPER")); 
+            objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT"));
+            objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT"));
+            objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS"));
+            objEnumeracion.setDPNUM_NUMSUPER(objrep_EnumeracionObject.isNull("DPNUM_NUMSUPER") ? null : objrep_EnumeracionObject.getInt("DPNUM_NUMSUPER"));
             //Fin agregados
+            //Nuevos
+            objEnumeracion.setExpectedNUMINFER(objrep_EnumeracionObject.isNull("expectedNUMINFER") ? null : objrep_EnumeracionObject.getDouble("expectedNUMINFER"));
+            objEnumeracion.setExpectedCANTIDAD(objrep_EnumeracionObject.isNull("expectedCANTIDAD") ? null : objrep_EnumeracionObject.getDouble("expectedCANTIDAD"));
+            //Finnuevos
             String result = reultReporteImpl.insertarNumeracionEquipoDev(objEnumeracion);
             HashMap<String, Object> hm = new HashMap<String, Object>();
             hm.put("RESULTADO", result);
@@ -1755,7 +1775,7 @@ public class WSReporte {
 
         return outDataC; // Retorna el resultado en formato JSON
     }
-    
+
     @GET
     @Path("/generaTicket")
     @Produces({MediaType.APPLICATION_JSON})
@@ -1938,7 +1958,7 @@ public class WSReporte {
                 fechaR3 = fecha3 != null ? formato.parse(fecha3) : null;
             }*/
             int opcionNumber = Integer.parseInt(opcion);
-            hmReportesC = objReporte.selectActualRepetidosProvincias( opcionNumber);
+            hmReportesC = objReporte.selectActualRepetidosProvincias(opcionNumber);
             Formatter fm = new Formatter("JSON", hmReportesC);
             outDataC = fm.getData().toString();
         } catch (Exception ex) {
@@ -2381,8 +2401,7 @@ public class WSReporte {
             //return e.getMessage();
         }
     }
-    
-    
+
     @GET
     @Path("/certificacionesNumeracion")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2393,7 +2412,7 @@ public class WSReporte {
         try {
             Number codigo = codigoP != null ? Integer.parseInt(codigoP) : null;
             Number nmin = nminP != null ? Integer.parseInt(nminP) : null;
-            Number nmax = nmaxP != null ? Integer.parseInt(nmaxP) : null;            
+            Number nmax = nmaxP != null ? Integer.parseInt(nmaxP) : null;
             hmReportesC = objReporte.selectCertificacionesBusquedaControl(codigo, nmin, nmax);
             Formatter fm = new Formatter("JSON", hmReportesC);
             outDataC = fm.getData().toString();
@@ -2402,7 +2421,7 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
     @Path("/buscarCertificacionPorNumero")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2421,9 +2440,8 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
-    
-    @GET
+
+    /*@GET
     @Path("/contratos")
     @Produces({MediaType.APPLICATION_JSON})
     public String selectContrato() {
@@ -2438,8 +2456,49 @@ public class WSReporte {
             System.out.println("Error: " + ex.getMessage());
         }
         return outDataC.toString();
+    }*/
+    //Agregado 21/05/2025
+    @GET
+    @Path("/anios-contratos")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectAniosContratos() {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> resultado = new ArrayList<>();
+        String outData = "";
+        try {
+            resultado = objReporte.selectAniosContratos();
+            Formatter fm = new Formatter("JSON", resultado);
+            outData = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outData;
     }
-    
+
+    @GET
+    @Path("/contratos")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String obtenerContratosPorAnio(@QueryParam("anio") String anio) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> contratos = new ArrayList<>();
+        String outData = "";
+        try {
+            if (anio == null || anio.trim().isEmpty()) {
+                anio = "TODOS";
+            }
+
+            System.out.println(">> AÑO RECIBIDO: [" + anio + "]");
+
+            contratos = objReporte.selectContratosPorAnio(anio);
+            Formatter fm = new Formatter("JSON", contratos);
+            outData = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return outData;
+    }
+
+    //Fin
     @GET
     @Path("/seccionesNumeracion")
     @Produces({MediaType.APPLICATION_JSON})
@@ -2456,24 +2515,24 @@ public class WSReporte {
         }
         return outDataC.toString();
     }
-    
+
     @GET
-    @Path("/objetosExcluidosCargabilidad")
+    @Path("/objetosExcluidosCargabilidad/{tipo}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String selectObjExcluidosSobrecargados() {
+    public String selectObjExcluidosPorTipo(@PathParam("tipo") String tipo) {
         ReporteImplement objReporte = new ReporteImplement();
-        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
-        String outDataC = "";
+        ArrayList<HashMap<String, Object>> hmReportes = new ArrayList<>();
+        String outData = "";
         try {
-            hmReportesC = objReporte.selectObjExcluidosSobrecargados();
-            Formatter fm = new Formatter("JSON", hmReportesC);
-            outDataC = fm.getData().toString();
+            hmReportes = objReporte.selectObjExcluidosPorTipo(tipo);
+            Formatter fm = new Formatter("JSON", hmReportes);
+            outData = fm.getData().toString();
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
-        return outDataC.toString();
+        return outData;
     }
-    
+
     //Fin Agregado por ANavas 16/12/2024
     // Perdidas
     @GET
@@ -3405,6 +3464,90 @@ public class WSReporte {
         }
 
         return outDataC.toString();
+    }
+
+    @POST
+    @Path("/verificarNumeracionDisponible")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response verificarNumeracionDisponible(String datosNumeracion) throws JSONException {
+        try {
+            ReporteImplement reultReporteImpl = new ReporteImplement();
+            JSONObject obj = new JSONObject(datosNumeracion);
+            EnumeracionEquipos e = new EnumeracionEquipos();
+            e.setDPNUM_TIPO_COD(obj.isNull("DPNUM_TIPO_COD") ? null : obj.getInt("DPNUM_TIPO_COD"));
+            e.setDPNUM_EQUIP_NUMINFER(obj.isNull("DPNUM_EQUIP_NUMINFER") ? null : obj.getDouble("DPNUM_EQUIP_NUMINFER"));
+            e.setDPNUM_EQUIP_NUMSUPER(obj.isNull("DPNUM_EQUIP_NUMSUPER") ? null : obj.getDouble("DPNUM_EQUIP_NUMSUPER"));
+            e.setDPNUM_EQUIP_COD(obj.isNull("DPNUM_EQUIP_COD") ? null : obj.getInt("DPNUM_EQUIP_COD"));
+
+            String resultado = reultReporteImpl.verificarNumeracionDisponible(e);
+            JSONObject json = new JSONObject();
+            json.put("RESULTADO", resultado);
+            return Response.ok(json.toString(), MediaType.APPLICATION_JSON).build();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JSONObject json = new JSONObject();
+            json.put("RESULTADO", "ERROR");
+            json.put("MENSAJE", e.getMessage());
+            return Response.ok(json.toString(), MediaType.APPLICATION_JSON).build();
+        }
+    }
+    
+ 
+    //reporte estructuras repetidas
+
+    @GET
+    @Path("/historialReporteRepetidos")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String historialReporteRepetidos(@QueryParam("fecha") String text, @QueryParam("fecha2") String text2, @QueryParam("usuario") String usuario) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<HashMap<String, Object>>();
+        String outDataC = "";
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha = formato.parse(text);
+            Date fecha2 = formato.parse(text2);
+            hmReportesC = objReporte.selectHistorialReportesRepetidos(fecha, fecha2, usuario);
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            outDataC = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+
+        return outDataC;
+    }
+    //SOLO UNA FECHA
+
+    @GET
+    @Path("/estructurasRepetidosProvinciasUnaFecha")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String selectRepetidosEstructurasProvinciasUnaFecha(@QueryParam("fecha") String fecha, @QueryParam("opcion") String opcion) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmReportesC = new ArrayList<>();
+        String outDataC = "";
+        System.out.println("Fecha recibida rest: " + fecha);
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date fechaR = null;
+            if (fecha != null && !fecha.trim().isEmpty()) {
+                fechaR = formato.parse(fecha);
+            }
+            int opcionR = Integer.parseInt(opcion);
+            System.out.println("fecha formateada enviada" + fechaR);
+            hmReportesC = objReporte.selectRepetidosEstructurasUnaFecha(fechaR, opcionR);
+            System.out.println("si 1");
+            Formatter fm = new Formatter("JSON", hmReportesC);
+            System.out.println("si 2");
+            outDataC = fm.getData().toString();
+            System.out.println("si 3");
+            System.out.println(outDataC);
+            System.out.println("si 4");
+        } catch (Exception ex) {
+            System.out.println("Error REST: " + ex.getMessage());
+        }
+
+        return outDataC;
     }
 
 }

@@ -28,6 +28,7 @@ import ec.com.eeasa.dp.server.factory.ReporteBrechasFactory;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import javax.ws.rs.QueryParam;
 
 /**
@@ -456,6 +457,19 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         return result;
     }
 
+    public String verificarNumeracionDisponible(
+            EnumeracionEquipos obj_enumEquipos
+    ) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        String result = objReporteBrechas.verificarNumeracionDisponible(
+                obj_enumEquipos.getDPNUM_TIPO_COD(),
+                obj_enumEquipos.getDPNUM_EQUIP_NUMINFER(),
+                obj_enumEquipos.getDPNUM_EQUIP_NUMSUPER(),
+                obj_enumEquipos.getDPNUM_EQUIP_COD()
+        );
+        return result;
+    }
+
     public ArrayList<HashMap<String, Object>> selectNumeracionDev() throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectNumeracionDev();
@@ -497,6 +511,10 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         return objReporteBrechas.selectReporteNumeracionSectores(sector, clase, fechaInicial, fechaFinal, anio);
     }
 
+    // Nuevos cambios de la implementacion de asignacion de enumeracion.
+    
+
+    
     public ArrayList<HashMap<String, Object>> selectPermisosNumeracion(String usuarioNombre) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectPermisosNumeracion(usuarioNombre);
@@ -516,7 +534,7 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.debeGenerarTicketEquipo(equipo);
     }
-    
+
     public ArrayList<HashMap<String, Object>> selectReporteEquiposUsuarioFechas(String codigoU) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectReporteEquiposUsuarioFechas(codigoU);
@@ -608,31 +626,32 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectGlobalRepetidos(fecha, opcion);
     }
-    
+
     public int selectExistenDevoluciones(int tipo) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectExistenDevoluciones(tipo);
     }
-    
+
     public ArrayList<HashMap<String, Object>> selectPermisosGestionContratistas(String usuarioNombre) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectPermisosGestionContratistas(usuarioNombre);
     }
-    
+
     public String gestionarRolesContratistas(String usuarioNombre, Number permiso) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.gestionarRolesContratistas(usuarioNombre, permiso);
     }
-    
+
     public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasDepartamento(Date fecha, Date fecha2, Number opcion) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectRepetidosEstructurasDepartamento(fecha, fecha2, opcion);
     }
+
     public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasProvincias(Date fecha, Date fecha2, Number opcion) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectRepetidosEstructurasProvincias(fecha, fecha2, opcion);
     }
-    
+
     public String insertarReportePostesRepetidosProv(ReporteEquiposDepartamentos obj_rep_trafos_d) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         String result = objReporteBrechas.insertarPostesRepetidosProv(obj_rep_trafos_d);
@@ -672,7 +691,7 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
             return "0";
         }
     }
-    
+
     public ArrayList<HashMap<String, Object>> selectCertificacionesBusquedaControl(Number codigo, Number nmin, Number nmax) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectCertificacionesBusquedaControl(codigo, nmin, nmax);
@@ -682,21 +701,35 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectCertificacionPorNumeracion(codigo, valor);
     }
-    
+
+    /*
     public ArrayList<HashMap<String, Object>> selectContrato() throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectContrato();
     }
-    
+     */
+    //Agregado 21/05/2025
+    public ArrayList<HashMap<String, Object>> selectAniosContratos() throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        return factory.selectAniosContratos();
+    }
+
+    public ArrayList<HashMap<String, Object>> selectContratosPorAnio(String anio) throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        return factory.selectContratosPorAnio(anio);
+    }
+
+//Fin agregado
     public ArrayList<HashMap<String, Object>> selectSeccionesNumeracion() throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectSeccionesNumeracion();
     }
-    
-    public ArrayList<HashMap<String, Object>> selectObjExcluidosSobrecargados() throws Exception {
+
+    public ArrayList<HashMap<String, Object>> selectObjExcluidosPorTipo(String tipo) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
-        return objReporteBrechas.selectObjExcluidosSobrecargados();
+        return objReporteBrechas.selectObjExcluidosPorTipo(tipo);
     }
+
     //Fin Agregado por ANavas 16/12/2024
     public String insertarPE(String cuenta, String fecha, String coment, String opcion) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
@@ -936,6 +969,18 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
     public ArrayList<HashMap<String, Object>> selectECA(String fecha) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectECA(fecha);
+    }
+    // reporte estructuras repetidas
+
+    public ArrayList<HashMap<String, Object>> selectHistorialReportesRepetidos(Date fecha, Date fecha2, String usuario) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectHistorialReportesRepetidos(fecha, fecha2, usuario);
+    }
+    //SOLO UNA FECHA
+
+    public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasUnaFecha(Date fecha, int opcion) throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        return factory.selectRepetidosEstructurasUnaFecha(fecha, opcion);
     }
 
 }

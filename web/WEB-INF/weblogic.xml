@@ -4,5 +4,9 @@
     <keepgenerated>true</keepgenerated>
     <debug>true</debug>
   </jsp-descriptor>
+  <resource-description>
+        <res-ref-name>gispruebasDS</res-ref-name>
+        <jndi-name>gispruebasDS</jndi-name>
+    </resource-description>
   <context-root>/WSGIS</context-root>
 </weblogic-web-app>
