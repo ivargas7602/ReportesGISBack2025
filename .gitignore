@@ -1,6 +1,7 @@
 # Archivos de compilación
 *.class
 *.war
+build/
 
 # Configuración del IDE (Eclipse, IntelliJ, NetBeans, etc.)
 .idea/
