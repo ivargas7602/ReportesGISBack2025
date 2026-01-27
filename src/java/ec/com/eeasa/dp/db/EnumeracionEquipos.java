@@ -36,6 +36,8 @@ public class EnumeracionEquipos {
     private Double DPNUM_EQUIP_NUMSUPER_ACTUAL;
     private Double expectedNUMINFER;
     private Double expectedCANTIDAD;
+    //Agregado Gabriel Medina (Con o Sin Numeración)
+    private String DPNUM_TIENE_NUMERACION;
 
     public EnumeracionEquipos() {
     }
@@ -43,7 +45,8 @@ public class EnumeracionEquipos {
     public EnumeracionEquipos(Number DPNUM_EQUIP_COD, Number DPNUM_CONTRA_COD, Number DPNUM_TIPO_COD, Number DPNUM_EQUIP_CANTIDAD,
             Number DPNUM_EQUIP_NUMINFER, Number DPNUM_EQUIP_NUMSUPER, Date DPNUM_EQUIP_FECHA,
             String DPNUM_EQUIP_SECTOR, String DPRUS_CUENTA, Number DPNUM_CLAS_COD, String OPCION, Number DPNUM_EQUIP_CANTIDAD_ACTULIZADA,
-            Number DPNUM_EQUIP_NUMSUPER_ACTUALIZADA, Number DPNUM_CERTIFICADO, String DPNUM_NUM_CONT, String DPNUM_ANIO_CONT, Number DPNUM_GRUPOS, Number DPNUM_NUMSUPER, Double DPNUM_EQUIP_NUMSUPER_ACTUAL) {
+            Number DPNUM_EQUIP_NUMSUPER_ACTUALIZADA, Number DPNUM_CERTIFICADO, String DPNUM_NUM_CONT, String DPNUM_ANIO_CONT, Number DPNUM_GRUPOS, Number DPNUM_NUMSUPER, Double DPNUM_EQUIP_NUMSUPER_ACTUAL,
+            String DPNUM_TIENE_NUMERACION) {
         this.setDPNUM_EQUIP_COD(DPNUM_EQUIP_COD);
         this.setDPNUM_CONTRA_COD(DPNUM_CONTRA_COD);
         this.setDPNUM_TIPO_COD(DPNUM_TIPO_COD);
@@ -63,7 +66,17 @@ public class EnumeracionEquipos {
         this.setDPNUM_ANIO_CONT(DPNUM_ANIO_CONT);
         this.setDPNUM_GRUPOS(DPNUM_GRUPOS);
         this.setDPNUM_NUMSUPER(DPNUM_NUMSUPER);
+        //agregado
+        this.setDPNUM_TIENE_NUMERACION(DPNUM_TIENE_NUMERACION);
+    }
 
+    //Agregado
+    public String getDPNUM_TIENE_NUMERACION() {
+        return DPNUM_TIENE_NUMERACION;
+    }
+
+    public void setDPNUM_TIENE_NUMERACION(String DPNUM_TIENE_NUMERACION) {
+        this.DPNUM_TIENE_NUMERACION = DPNUM_TIENE_NUMERACION;
     }
 
     //agregados 

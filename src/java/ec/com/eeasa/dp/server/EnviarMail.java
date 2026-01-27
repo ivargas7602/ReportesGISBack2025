@@ -2,85 +2,96 @@ package ec.com.eeasa.dp.server;
 
 import java.io.Serializable;
 import java.util.Properties;
+import java.net.URL;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.util.ByteArrayDataSource;
+import javax.mail.*;
+import javax.mail.internet.*;
 
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+public class EnviarMail implements Serializable {
 
-public class EnviarMail  implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    // --- CREDENCIALES ---
+    private final String usuario = "sisde@eeasa.com.ec";
+    private final String password = "UPDDis2024#";
+    private final String host = "smtp.office365.com"; // Servidor
+    private final String puerto = "587";             // Puerto
 
-	public EnviarMail() {
-	
-		// TODO Auto-generated constructor stub
-	}
-	public String enviarSimpleMail(String inCorreoRecibe, String inAsunto, String inMensaje) {
-	    String respuesta="false";    
-	    
-	    // La direcci�n de la cuenta de env�o (from)
-	    String correo_sisgerh = "sisgerh@eeasa.com.ec";
-	    	    
-	    // El servidor (host). En este caso usamos localhost
-	    String host = "172.16.1.21";
+    public EnviarMail() {
+    }
 
-	    try{
-	    // Obtenemos las propiedades del sistema
-		    Properties propiedades = System.getProperties();	
-		    // Configuramos el servidor de correo
-		    propiedades.setProperty("mail.smtp.host", host);
-		    propiedades.put("mail.smtp.host", host);
-		    propiedades.put("mail.smtp.port", "25");
-	
-		    // Obtenemos la sesi�n por defecto
-		    Session sesion = Session.getDefaultInstance(propiedades);
+    public String enviarMailConAdjunto(String destinatario, String asunto, String mensajeHtml, byte[] contenidoAdjunto, String nombreArchivo) {
+        String respuesta = "false";
 
-	    
-		      // Creamos un objeto mensaje tipo MimeMessage por defecto.
-		      MimeMessage mensaje = new MimeMessage(sesion);
-	
-		      // Asignamos el �de o from� al header del correo.
-		      mensaje.setFrom(new InternetAddress(correo_sisgerh));
-	
-		      // Asignamos el �para o to� al header del correo.	      	      
-		      mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(inCorreoRecibe));	      		      	          	      
-	
-		      // Asignamos el asunto
-		      mensaje.setSubject(inAsunto);
+        try {
+            // 1. Configuración de Propiedades para Microsoft
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", puerto);
+            props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 
-		      // Creamos un cuerpo del correo con ayuda de la clase BodyPart
-		      BodyPart cuerpoMensaje = new MimeBodyPart();
-	
-		      // Asignamos el texto del correo
-		      cuerpoMensaje.setContent(inMensaje,"text/html");
-	
-		      // Creamos un multipart al correo
-		      Multipart multipart = new MimeMultipart();
-	
-		      // Agregamos el texto al cuerpo del correo multiparte
-		      multipart.addBodyPart(cuerpoMensaje);		      
+            // 2. Sesión con Autenticación Obligatoria
+            Session sesion = Session.getInstance(props, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(usuario, password);
+                }
+            });
 
-	      // Asignamos al mensaje todas las partes que creamos anteriormente
-	      mensaje.setContent(multipart);
-	      
-	      // Enviamos el correo
-	      Transport.send(mensaje);
-	      respuesta = "true";
-	    } catch (MessagingException e) {	      
-	      respuesta = e.getMessage();
-	      e.printStackTrace();	    
-		}
-	    
-	    return respuesta;
-	  }	
+            MimeMessage mensaje = new MimeMessage(sesion);
+            mensaje.setFrom(new InternetAddress(usuario)); // El remitente debe ser el mismo usuario autenticado
+            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+            mensaje.setSubject(asunto);
+
+            Multipart contenidoMultitipo = new MimeMultipart("related");
+
+            // --- Parte HTML ---
+            BodyPart cuerpoTexto = new MimeBodyPart();
+            cuerpoTexto.setContent(mensajeHtml, "text/html; charset=utf-8");
+            contenidoMultitipo.addBodyPart(cuerpoTexto);
+
+            // --- Parte Logo ---
+            try {
+                URL logoUrl = getClass().getResource("/ec/com/eeasa/dp/resources/LogoEEASA.jpeg");
+                if (logoUrl != null) {
+                    MimeBodyPart imagenPart = new MimeBodyPart();
+                    imagenPart.setDataHandler(new DataHandler(new FileDataSource(logoUrl.getPath())));
+                    imagenPart.setHeader("Content-ID", "<logo_eeasa>");
+                    imagenPart.setDisposition(MimeBodyPart.INLINE);
+                    contenidoMultitipo.addBodyPart(imagenPart);
+                }
+            } catch (Exception e) {
+                System.out.println("Logo no cargado: " + e.getMessage());
+            }
+
+            // --- Parte Adjunto (Detecta PDF o Excel) ---
+            if (contenidoAdjunto != null) {
+                MimeBodyPart parteAdjunto = new MimeBodyPart();
+                String mimeType = nombreArchivo.toLowerCase().endsWith(".pdf") ? "application/pdf" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                DataSource fuenteDatos = new ByteArrayDataSource(contenidoAdjunto, mimeType);
+                parteAdjunto.setDataHandler(new DataHandler(fuenteDatos));
+                parteAdjunto.setFileName(nombreArchivo);
+                contenidoMultitipo.addBodyPart(parteAdjunto);
+            }
+
+            mensaje.setContent(contenidoMultitipo);
+
+            // 3. Envío
+            Transport.send(mensaje);
+            respuesta = "true";
+
+        } catch (Exception e) {
+            respuesta = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+        return respuesta;
+    }
+
+    public String enviarSimpleMail(String inCorreoRecibe, String inAsunto, String inMensaje) {
+        return enviarMailConAdjunto(inCorreoRecibe, inAsunto, inMensaje, null, "");
+    }
 }

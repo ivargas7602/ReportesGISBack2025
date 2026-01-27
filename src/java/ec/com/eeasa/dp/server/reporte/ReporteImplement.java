@@ -23,6 +23,7 @@ import ec.com.eeasa.dp.db.ReporteTrafosDepartamentos;
 import ec.com.eeasa.dp.db.ReporteUsuario;
 import ec.com.eeasa.dp.db.Usuarios;
 import ec.com.eeasa.dp.server.DataBaseObject;
+import ec.com.eeasa.dp.server.EnviarMail;
 import ec.com.eeasa.dp.server.ReportesRemoteServiceServlet;
 import ec.com.eeasa.dp.server.factory.ReporteBrechasFactory;
 import java.util.ArrayList;
@@ -30,6 +31,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.ws.rs.QueryParam;
+
+// Dependencias para modificacion del Excel
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.sql.SQLException;
+import java.util.Map;
 
 /**
  *
@@ -512,9 +521,6 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
     }
 
     // Nuevos cambios de la implementacion de asignacion de enumeracion.
-    
-
-    
     public ArrayList<HashMap<String, Object>> selectPermisosNumeracion(String usuarioNombre) throws Exception {
         ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
         return objReporteBrechas.selectPermisosNumeracion(usuarioNombre);
@@ -981,6 +987,167 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
     public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasUnaFecha(Date fecha, int opcion) throws Exception {
         ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
         return factory.selectRepetidosEstructurasUnaFecha(fecha, opcion);
+    }
+
+    //Agregado Gabriel Medina 18/12/2025 (Postes Con Numeración)
+    public ArrayList<HashMap<String, Object>> selectBloquesPostesNumerados() throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        return factory.selectBloquesPostesNumerados();
+    }
+
+    // Agregado Gabriel Medina 22/12/2025 (Postes Con Numeración)
+    public String guardarAsignacionPostes(int equipCod, int inicio, int fin, String sector, String nombre, String apellido) throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        // Enviamos los datos a la factory
+        return factory.insertarRangoPostes(equipCod, inicio, fin, sector, nombre, apellido);
+    }
+
+    // Agregado Gabriel Medina 24/12/2025 (Postes Con Numeración)
+    public ArrayList<HashMap<String, Object>> consultarPostesAsignados(int equipCod) throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        return factory.consultarPostesAsignados(equipCod);
+    }
+
+    // ------------------- ENVIO DE CORREO CON NOTIFICACION ------------------------
+// ------------------- ENVIO DE CORREO CON NOTIFICACION CONSOLIDADA ------------------------
+    public String guardarLotePostesMasivo(List<Map<String, Object>> lote, String excelBase64, String pdfBase64, int contraCod) throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        java.sql.Connection conn = getDB().con.getConexion();
+
+        // Sincronizamos el objeto DataBaseObject para que no haga commit automático
+        getDB().setAutoCommit(false);
+
+        String excelTrabajo = (excelBase64 != null) ? excelBase64.trim().replaceAll("\\s", "") : null;
+        boolean hayInconsistencias = false;
+        StringBuilder logErrores = new StringBuilder();
+
+        // Lista para acumular errores y marcar el Excel UNA SOLA VEZ al final del bucle
+        List<Map<String, Object>> erroresDetectados = new ArrayList<>();
+
+        try {
+            // 1. Iniciamos transacción a nivel de conexión JDBC
+            conn.setAutoCommit(false);
+
+            for (Map<String, Object> item : lote) {
+                int equipCod = (int) item.get("equipCod");
+                int inicio = (int) item.get("inicio");
+                int fin = (int) item.get("fin");
+                String sector = (String) item.get("sector");
+                String nom = (String) item.get("nombre");
+                String ape = (String) item.get("apellido");
+
+                // Se intenta insertar registro por registro
+                String res = factory.insertarRangoPostes(equipCod, inicio, fin, sector, nom, ape);
+
+                if (!res.equalsIgnoreCase("OK")) {
+                    hayInconsistencias = true;
+                    logErrores.append("Rango ").append(inicio).append("-").append(fin)
+                            .append(": ").append(res).append("<br>");
+
+                    // Guardamos la info del error para procesarla después del bucle
+                    Map<String, Object> errorInfo = new HashMap<>();
+                    errorInfo.put("inicio", inicio);
+                    errorInfo.put("fin", fin);
+                    errorInfo.put("obs", res);
+                    erroresDetectados.add(errorInfo);
+                }
+            }
+
+            if (hayInconsistencias) {
+                // 2. ERROR DETECTADO: Deshacemos todo lo que se insertó en el bucle
+                conn.rollback();
+
+                // 3. PROCESO DE EXCEL: Marcamos todas las observaciones de una sola vez
+                if (excelTrabajo != null) {
+                    for (Map<String, Object> err : erroresDetectados) {
+                        byte[] tempExcel = modificarExcelConObservacion(excelTrabajo, (int) err.get("inicio"), (int) err.get("fin"), (String) err.get("obs"));
+                        excelTrabajo = java.util.Base64.getEncoder().encodeToString(tempExcel);
+                    }
+                }
+
+                // 4. UN SOLO ENVÍO DE CORREO DE ERROR: Con el Excel ya marcado completamente
+                enviarCorreoUnico(factory, contraCod, "ERROR", logErrores.toString(), excelTrabajo, null);
+
+                return "ERROR_LOTE";
+            } else {
+                // 5. TODO OK: Guardamos los cambios permanentemente en la base de datos
+                conn.commit();
+
+                // Enviamos un único correo de éxito con el PDF del acta
+                enviarCorreoUnico(factory, contraCod, "OK", null, null, pdfBase64);
+
+                return "OK";
+            }
+
+        } catch (Exception e) {
+            // En caso de cualquier error de sistema (SQL, Red, etc.), forzamos el rollback
+            if (conn != null && !conn.isClosed()) {
+                conn.rollback();
+            }
+            e.printStackTrace();
+            throw e;
+        } finally {
+            // 6. LIMPIEZA: Devolvemos el estado de AutoCommit a la normalidad para el Pool de Conexiones
+            if (conn != null && !conn.isClosed()) {
+                conn.setAutoCommit(true);
+                getDB().setAutoCommit(true); // También restauramos el objeto global
+            }
+        }
+    }
+
+    // AHORA RECIBE EL FACTORY para reutilizar la conexión
+    private void enviarCorreoUnico(ReporteBrechasFactory factory, int contraCod, String tipo, String detalle, String excelB64, String pdfB64) throws Exception {
+        HashMap<String, Object> datos = factory.obtenerMailContratista(contraCod);
+        if (datos == null) {
+            return;
+        }
+
+        String correoDestino = "gaboleon1996@gmail.com";
+        String nombreContra = datos.get("NOMBRE_COMPLETO").toString();
+        EnviarMail mailer = new EnviarMail();
+        String imgLogo = "<img src='cid:logo_eeasa' width='150'>";
+
+        if (tipo.equals("OK")) {
+            String cuerpo = "<div style='font-family: Arial; padding: 20px; border: 1px solid #ddd;'>" + imgLogo
+                    + "<h2>Registro Exitoso</h2><p>Estimado <b>" + nombreContra + "</b>, se adjunta el acta consolidada.</p></div>";
+            byte[] bytes = java.util.Base64.getDecoder().decode(pdfB64.trim().replaceAll("\\s", ""));
+            mailer.enviarMailConAdjunto(correoDestino, "Acta de Registro de Numeración - EEASA", cuerpo, bytes, "Acta_Postes.pdf");
+        } else {
+            String cuerpo = "<div style='font-family: Arial; padding: 20px; border: 1px solid #ddd;'>" + imgLogo
+                    + "<h2 style='color:red;'>Inconsistencias Detectadas</h2><p>Se detectaron errores y <b>no se guardó ningún registro</b>:</p>"
+                    + "<p>" + detalle + "</p><p>Revise el Excel adjunto.</p></div>";
+            byte[] bytes = java.util.Base64.getDecoder().decode(excelB64.trim().replaceAll("\\s", ""));
+            mailer.enviarMailConAdjunto(correoDestino, "Reporte de Inconsistencias - EEASA", cuerpo, bytes, "Revision_Inconsistencias.xlsx");
+        }
+    }
+
+    private byte[] modificarExcelConObservacion(String base64Limpio, int inicio, int fin, String observacion) {
+        try ( ByteArrayInputStream bais = new ByteArrayInputStream(java.util.Base64.getDecoder().decode(base64Limpio));  Workbook workbook = new XSSFWorkbook(bais);  ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+
+            Sheet sheet = workbook.getSheetAt(0);
+            CellStyle style = workbook.createCellStyle();
+            Font font = workbook.createFont();
+            font.setColor(IndexedColors.RED.getIndex());
+            font.setBold(true);
+            style.setFont(font);
+
+            for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    Cell cell0 = row.getCell(0);
+                    if (cell0 != null && cell0.getCellType() == CellType.NUMERIC && (int) cell0.getNumericCellValue() == inicio) {
+                        Cell cellObs = row.createCell(3);
+                        cellObs.setCellValue(observacion);
+                        cellObs.setCellStyle(style);
+                        break;
+                    }
+                }
+            }
+            workbook.write(baos);
+            return baos.toByteArray();
+        } catch (Exception e) {
+            return java.util.Base64.getDecoder().decode(base64Limpio);
+        }
     }
 
 }

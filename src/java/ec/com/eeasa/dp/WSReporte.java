@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -1380,6 +1381,8 @@ public class WSReporte {
             objEnumeracion.setDPNUM_NUM_CONT(objrep_EnumeracionObject.isNull("DPNUM_NUM_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_NUM_CONT"));
             objEnumeracion.setDPNUM_ANIO_CONT(objrep_EnumeracionObject.isNull("DPNUM_ANIO_CONT") ? null : objrep_EnumeracionObject.getString("DPNUM_ANIO_CONT"));
             objEnumeracion.setDPNUM_GRUPOS(objrep_EnumeracionObject.isNull("DPNUM_GRUPOS") ? null : objrep_EnumeracionObject.getInt("DPNUM_GRUPOS"));
+            //Agregado Gabriel MeDINA Postes Sin o Con Numeración
+            objEnumeracion.setDPNUM_TIENE_NUMERACION(objrep_EnumeracionObject.isNull("DPNUM_TIENE_NUMERACION") ? null : objrep_EnumeracionObject.getString("DPNUM_TIENE_NUMERACION"));
             //Fin agregados
             objEnumeracion.setOPCION(objrep_EnumeracionObject.isNull("OPCION") ? null : objrep_EnumeracionObject.getString("OPCION"));
             String result = reultReporteImpl.insertarNumeracionEquipo(objEnumeracion);
@@ -3493,10 +3496,8 @@ public class WSReporte {
             return Response.ok(json.toString(), MediaType.APPLICATION_JSON).build();
         }
     }
-    
- 
-    //reporte estructuras repetidas
 
+    //reporte estructuras repetidas
     @GET
     @Path("/historialReporteRepetidos")
     @Produces({MediaType.APPLICATION_JSON})
@@ -3548,6 +3549,88 @@ public class WSReporte {
         }
 
         return outDataC;
+    }
+
+    //Agregado Gabriel Medina 18/12/2025 (Postes Con Numeración)
+    @GET
+    @Path("/obtenerBloquesPostes")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String obtenerBloquesPostes() {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmLista = new ArrayList<HashMap<String, Object>>();
+        String outData = "";
+        try {
+            hmLista = objReporte.selectBloquesPostesNumerados();
+            // Formatter convierte el ArrayList en el JSON que espera el Front
+            Formatter fm = new Formatter("JSON", hmLista);
+            outData = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error en WS obtenerBloquesPostes: " + ex.getMessage());
+        }
+        return outData;
+    }
+
+    @POST
+    @Path("/guardarPostesMasivo")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String guardarPostesMasivo(String jsonInput) {
+        ReporteImplement objReporte = new ReporteImplement();
+        String outData = "";
+        try {
+            JSONObject json = new JSONObject(jsonInput);
+
+            // 1. Extraemos el lote (es un JSONArray)
+            JSONArray loteArray = json.getJSONArray("lote");
+            List<Map<String, Object>> listaLote = new ArrayList<>();
+
+            for (int i = 0; i < loteArray.length(); i++) {
+                JSONObject item = loteArray.getJSONObject(i);
+                Map<String, Object> map = new HashMap<>();
+                map.put("equipCod", item.getInt("equipCod"));
+                map.put("inicio", item.getInt("inicio"));
+                map.put("fin", item.getInt("fin"));
+                map.put("sector", item.getString("sector"));
+                map.put("nombre", item.getString("nombre"));
+                map.put("apellido", item.getString("apellido"));
+                listaLote.add(map);
+            }
+
+            // 2. Extraemos los campos generales
+            int contraCod = json.optInt("contraCod", 0);
+            String excelBase64 = json.optString("excelBase64", null);
+            String pdfBase64 = json.optString("pdfBase64", null);
+
+            // 3. Llamamos al nuevo método masivo consolidado
+            String resultado = objReporte.guardarLotePostesMasivo(listaLote, excelBase64, pdfBase64, contraCod);
+
+            outData = "{\"status\": \"" + resultado + "\"}";
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            outData = "{\"status\": \"ERROR\", \"message\": \"" + ex.getMessage() + "\"}";
+        }
+        return outData;
+    }
+
+    // Agregado Gabriel Medina 24/12/2025 (Consulta de Postes Asignados)
+    @GET
+    @Path("/obtenerPostesAsignados")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String obtenerPostesAsignados(@QueryParam("equipCod") int equipCod) {
+        ReporteImplement objReporte = new ReporteImplement();
+        ArrayList<HashMap<String, Object>> hmLista = new ArrayList<HashMap<String, Object>>();
+        String outData = "";
+        try {
+            hmLista = objReporte.consultarPostesAsignados(equipCod);
+            // Formatter convierte la lista de HashMaps en JSON
+            Formatter fm = new Formatter("JSON", hmLista);
+            outData = fm.getData().toString();
+        } catch (Exception ex) {
+            System.out.println("Error en WS obtenerPostesAsignados: " + ex.getMessage());
+            outData = "[]"; // Retorna arreglo vacío en caso de error
+        }
+        return outData;
     }
 
 }

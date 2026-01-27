@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.8/weblogic-web-app.xsd">
-  <jsp-descriptor>
-    <keepgenerated>true</keepgenerated>
-    <debug>true</debug>
-  </jsp-descriptor>
-  <resource-description>
+    <jsp-descriptor>
+        <keepgenerated>true</keepgenerated>
+        <debug>true</debug>
+    </jsp-descriptor>
+    <resource-description>
         <res-ref-name>gispruebasDS</res-ref-name>
         <jndi-name>gispruebasDS</jndi-name>
     </resource-description>
-  <context-root>/WSGIS</context-root>
+
+    <container-descriptor>
+        <prefer-web-inf-classes>false</prefer-web-inf-classes>
+        
+        <prefer-application-packages>
+            <package-name>org.apache.poi.*</package-name>
+            <package-name>org.apache.xmlbeans.*</package-name>
+            <package-name>org.apache.commons.compress.*</package-name>
+        </prefer-application-packages>
+    </container-descriptor>
+
+    <context-root>/WSGIS</context-root>
 </weblogic-web-app>
