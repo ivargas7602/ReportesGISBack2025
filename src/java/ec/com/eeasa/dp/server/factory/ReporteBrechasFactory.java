@@ -820,8 +820,8 @@ public class ReporteBrechasFactory {
         parametros.add(numEquipSuperior);
         parametros.add(clase);
         reporteResultado = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
-        return reporteResultado;
-    }
+            return reporteResultado;
+        }
 
     public ArrayList<HashMap<String, Object>> selectSectores() throws Exception {
         ArrayList<HashMap<String, Object>> listSectores = new ArrayList<HashMap<String, Object>>();

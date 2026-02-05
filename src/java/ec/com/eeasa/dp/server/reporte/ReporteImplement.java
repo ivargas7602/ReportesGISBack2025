@@ -1009,23 +1009,20 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
     }
 
     // ------------------- ENVIO DE CORREO CON NOTIFICACION ------------------------
-// ------------------- ENVIO DE CORREO CON NOTIFICACION CONSOLIDADA ------------------------
+    // Añadido Gabriel Medina
     public String guardarLotePostesMasivo(List<Map<String, Object>> lote, String excelBase64, String pdfBase64, int contraCod) throws Exception {
         ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
         java.sql.Connection conn = getDB().con.getConexion();
 
-        // Sincronizamos el objeto DataBaseObject para que no haga commit automático
+        // Sincronizamos el objeto DataBaseObject para transacciones manuales
         getDB().setAutoCommit(false);
 
         String excelTrabajo = (excelBase64 != null) ? excelBase64.trim().replaceAll("\\s", "") : null;
         boolean hayInconsistencias = false;
         StringBuilder logErrores = new StringBuilder();
-
-        // Lista para acumular errores y marcar el Excel UNA SOLA VEZ al final del bucle
         List<Map<String, Object>> erroresDetectados = new ArrayList<>();
 
         try {
-            // 1. Iniciamos transacción a nivel de conexión JDBC
             conn.setAutoCommit(false);
 
             for (Map<String, Object> item : lote) {
@@ -1036,15 +1033,13 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
                 String nom = (String) item.get("nombre");
                 String ape = (String) item.get("apellido");
 
-                // Se intenta insertar registro por registro
+                // Ejecuta la función de base de datos para cada rango
                 String res = factory.insertarRangoPostes(equipCod, inicio, fin, sector, nom, ape);
 
                 if (!res.equalsIgnoreCase("OK")) {
                     hayInconsistencias = true;
-                    logErrores.append("Rango ").append(inicio).append("-").append(fin)
-                            .append(": ").append(res).append("<br>");
+                    logErrores.append("Rango ").append(inicio).append("-").append(fin).append(": ").append(res).append("<br>");
 
-                    // Guardamos la info del error para procesarla después del bucle
                     Map<String, Object> errorInfo = new HashMap<>();
                     errorInfo.put("inicio", inicio);
                     errorInfo.put("fin", fin);
@@ -1054,43 +1049,35 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
             }
 
             if (hayInconsistencias) {
-                // 2. ERROR DETECTADO: Deshacemos todo lo que se insertó en el bucle
                 conn.rollback();
-
-                // 3. PROCESO DE EXCEL: Marcamos todas las observaciones de una sola vez
+                // Si hay error, marcamos el Excel y notificamos al contratista específico
                 if (excelTrabajo != null) {
                     for (Map<String, Object> err : erroresDetectados) {
                         byte[] tempExcel = modificarExcelConObservacion(excelTrabajo, (int) err.get("inicio"), (int) err.get("fin"), (String) err.get("obs"));
                         excelTrabajo = java.util.Base64.getEncoder().encodeToString(tempExcel);
                     }
                 }
-
-                // 4. UN SOLO ENVÍO DE CORREO DE ERROR: Con el Excel ya marcado completamente
                 enviarCorreoUnico(factory, contraCod, "ERROR", logErrores.toString(), excelTrabajo, null);
-
                 return "ERROR_LOTE";
             } else {
-                // 5. TODO OK: Guardamos los cambios permanentemente en la base de datos
+                // TODO OK: Confirmamos los cambios
                 conn.commit();
 
-                // Enviamos un único correo de éxito con el PDF del acta
+                // Enviamos el correo con el PDF INDIVIDUAL que generamos en el Front
                 enviarCorreoUnico(factory, contraCod, "OK", null, null, pdfBase64);
-
                 return "OK";
             }
 
         } catch (Exception e) {
-            // En caso de cualquier error de sistema (SQL, Red, etc.), forzamos el rollback
             if (conn != null && !conn.isClosed()) {
                 conn.rollback();
             }
             e.printStackTrace();
             throw e;
         } finally {
-            // 6. LIMPIEZA: Devolvemos el estado de AutoCommit a la normalidad para el Pool de Conexiones
             if (conn != null && !conn.isClosed()) {
                 conn.setAutoCommit(true);
-                getDB().setAutoCommit(true); // También restauramos el objeto global
+                getDB().setAutoCommit(true);
             }
         }
     }
@@ -1121,6 +1108,7 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         }
     }
 
+    // Metodo Para Modificar el excel por envio de correo con Observación
     private byte[] modificarExcelConObservacion(String base64Limpio, int inicio, int fin, String observacion) {
         try ( ByteArrayInputStream bais = new ByteArrayInputStream(java.util.Base64.getDecoder().decode(base64Limpio));  Workbook workbook = new XSSFWorkbook(bais);  ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 
