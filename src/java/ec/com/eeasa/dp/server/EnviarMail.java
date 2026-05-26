@@ -34,6 +34,7 @@ public class EnviarMail implements Serializable {
             props.put("mail.smtp.host", host);
             props.put("mail.smtp.port", puerto);
             props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+            props.put("mail.smtp.ssl.trust", "*"); // Se agrego para tenga permisos de envio SSL
 
             // 2. Sesión con Autenticación Obligatoria
             Session sesion = Session.getInstance(props, new javax.mail.Authenticator() {
