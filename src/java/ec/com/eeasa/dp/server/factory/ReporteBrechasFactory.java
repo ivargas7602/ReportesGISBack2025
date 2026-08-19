@@ -37,6 +37,9 @@ import java.util.List;
  */
 public class ReporteBrechasFactory {
 
+    private static final String ESQUEMA = "REPORTES_GIS";
+    // private static final String ESQUEMA = "REPORTES_GIS_PRUEBAS";
+
     DataBaseObject dbo;
 
     public ReporteBrechasFactory(DataBaseObject dbo) {
@@ -50,133 +53,133 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectAllComercial() throws Exception {
         ArrayList<HashMap<String, Object>> listComercial = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_COMERCIAL(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_COMERCIAL(?)";
         listComercial = dbo.SQL_CALL_PROCEDURE(sql);
         return listComercial;
     }
 
     public ArrayList<HashMap<String, Object>> selectAllGiss() throws Exception {
         ArrayList<HashMap<String, Object>> listComercial = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS(?)";
         listComercial = dbo.SQL_CALL_PROCEDURE(sql);
         return listComercial;
     }
 
     public ArrayList<HashMap<String, Object>> selectComercial() throws Exception {
         ArrayList<HashMap<String, Object>> listComercial = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_COMERCIAL_TOTAL(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_COMERCIAL_TOTAL(?)";
         listComercial = dbo.SQL_CALL_PROCEDURE(sql);
         return listComercial;
     }
 
     public ArrayList<HashMap<String, Object>> selectGis() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_TOTAL(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_TOTAL(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisDesconectados() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_DESCONECTADOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_DESCONECTADOS(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisSinCarga() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_SIN_CARGA(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_SIN_CARGA(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisCuentaNula() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_CUENTA_NULA(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_CUENTA_NULA(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisCuentaBaja() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_CUENTA_BAJA(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_CUENTA_BAJA(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisRepetidos() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_REPETIDOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_REPETIDOS(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisAlimentador() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_ALIMENTADOR(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_ALIMENTADOR(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisFotovotaico() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_FOTOVOLTAICOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_FOTOVOLTAICOS(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectGisMediaTension() throws Exception {
         ArrayList<HashMap<String, Object>> listGis = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_GIS_MEDIA_TENSION(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_GIS_MEDIA_TENSION(?)";
         listGis = dbo.SQL_CALL_PROCEDURE(sql);
         return listGis;
     }
 
     public ArrayList<HashMap<String, Object>> selectComercialFaltantes() throws Exception {
         ArrayList<HashMap<String, Object>> listComerical = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_COMERCIAL_FALTANTES(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_COMERCIAL_FALTANTES(?)";
         listComerical = dbo.SQL_CALL_PROCEDURE(sql);
         return listComerical;
     }
 
     public ArrayList<HashMap<String, Object>> selectComercialFaltantesCuenta() throws Exception {
         ArrayList<HashMap<String, Object>> listComerical = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_COMERCIAL_FALTANTESC(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_COMERCIAL_FALTANTESC(?)";
         listComerical = dbo.SQL_CALL_PROCEDURE(sql);
         return listComerical;
     }
 
     public ArrayList<HashMap<String, Object>> selectNumeroReporte() throws Exception {
         ArrayList<HashMap<String, Object>> numReporte = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_NUM_REPORTE(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_NUM_REPORTE(?)";
         numReporte = dbo.SQL_CALL_PROCEDURE(sql);
         return numReporte;
     }
 
     public ArrayList<HashMap<String, Object>> selectUsuario() throws Exception {
         ArrayList<HashMap<String, Object>> usuario = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_USUARIO(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_USUARIO(?)";
         usuario = dbo.SQL_CALL_PROCEDURE(sql);
         return usuario;
     }
 
     public ArrayList<HashMap<String, Object>> selectDetalleClientesFaltantes() throws Exception {
         ArrayList<HashMap<String, Object>> reporte = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_DET_CLI_FAL(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_DET_CLI_FAL(?)";
         reporte = dbo.SQL_CALL_PROCEDURE(sql);
         return reporte;
     }
 
     public ArrayList<HashMap<String, Object>> selectNombreAlimentador() throws Exception {
         ArrayList<HashMap<String, Object>> listAlimentador = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_NOM_ALIMENTADOR(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_NOM_ALIMENTADOR(?)";
         listAlimentador = dbo.SQL_CALL_PROCEDURE(sql);
         return listAlimentador;
     }
 
     public ArrayList<HashMap<String, Object>> selectReporteUsuario(String codigoU) throws Exception {
         ArrayList<HashMap<String, Object>> reporteUsuario = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_USER(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_USER(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoU);
         reporteUsuario = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -186,7 +189,7 @@ public class ReporteBrechasFactory {
     /*    Reporte Seleccionado */
     public ArrayList<HashMap<String, Object>> selectReporteSeleccionado(Number codigoR) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_SELEC(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_SELEC(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoR);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -195,7 +198,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteDetalleGis(Number codigoR) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_DET_GIS(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_DET_GIS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoR);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -204,7 +207,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteDetalleAlimentador(Number codigoR) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_DET_ALIMENT(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_DET_ALIMENT(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoR);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -213,7 +216,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteFaltantesDC(Number codigoR) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_CLI_FAL_DC(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_CLI_FAL_DC(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoR);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -222,7 +225,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteProvinciaGis(Number codigoR) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROVINCIA_G(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROVINCIA_G(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoR);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -231,7 +234,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteProvinciaGisFecha(String cod) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROV_GIS_FEC(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROV_GIS_FEC(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cod);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -240,7 +243,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistorialReportes(Date fecha, Date fecha2, String usuario) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HISTORIAL_REPORTES(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HISTORIAL_REPORTES(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -251,7 +254,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteProvinciaDC(Number codigoR) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaDC = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROVINCIA_DC(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROVINCIA_DC(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoR);
         reporteProvinciaDC = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -260,7 +263,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteProvinciaDCFecha(String cod) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaDC = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROV_DC_FEC(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_PROV_DC_FEC(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cod);
         reporteProvinciaDC = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -268,7 +271,7 @@ public class ReporteBrechasFactory {
     }
 
     public String insertUsuario(double codigoROL, String codigoUsuario, String cuentaUsuario, String nombreUsuario, String estadoUsuario) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_USUARIO_REPORTE(?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_USUARIO_REPORTE(?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuentaUsuario);
         parametros.add(codigoROL);
@@ -283,7 +286,7 @@ public class ReporteBrechasFactory {
     public String insertReporteBrechas(
             ReporteBrechas obj_rep_brechas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REPORTE_BRECHAS(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REPORTE_BRECHAS(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_brechas.getCUENTA_USUARIO());
         parametros.add(obj_rep_brechas.getCLIENTES_GIS_ENERGIZADOS());
@@ -296,7 +299,7 @@ public class ReporteBrechasFactory {
     public String insertReporteClientesFaltantesDC(
             ReporteClientesFaltantesDC obj_rep_brechas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REPORTE_CLI_FAL_DC(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REPORTE_CLI_FAL_DC(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_brechas.getDPREP_CODIGO());
         parametros.add(obj_rep_brechas.getDREDC_ZONA());
@@ -309,7 +312,7 @@ public class ReporteBrechasFactory {
     public String insertReporteClientesProvinciaDC(
             ReporteClientesProvinciaDC obj_rep_brechas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REPORTE_CLI_PROV_DC(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REPORTE_CLI_PROV_DC(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_brechas.getDPREP_CODIGO());
         parametros.add(obj_rep_brechas.getDRCPC_COD_PROV());
@@ -322,7 +325,7 @@ public class ReporteBrechasFactory {
     public String insertReporteClientesProvinciaGIS(
             ReporteClientesProvinciaGIS obj_rep_brechas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REPORTE_CLI_PROV_GIS(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REPORTE_CLI_PROV_GIS(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_brechas.getDPREP_CODIGO());
         parametros.add(obj_rep_brechas.getDRCPG_COD_PROV());
@@ -335,7 +338,7 @@ public class ReporteBrechasFactory {
     public String insertReporteDetalleAlimentador(
             ReporteDetalleAlimentador obj_rep_brechas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REPORTE_DET_ALI(?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REPORTE_DET_ALI(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_brechas.getDPREP_CODIGO());
         parametros.add(obj_rep_brechas.getDRALI_COD_ALIMENTADOR());
@@ -347,7 +350,7 @@ public class ReporteBrechasFactory {
     public String insertReporteDetalleGIS(
             ReporteDetalleGIS obj_rep_brechas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REPORTE_DET_GIS(?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REPORTE_DET_GIS(?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_brechas.getDPREP_CODIGO());
         parametros.add(obj_rep_brechas.getDREDG_CLI_GIS_CONEXION());
@@ -361,7 +364,7 @@ public class ReporteBrechasFactory {
     }
 
     /*public String insertUsuario(ReporteUsuario objUsuario)throws Exception{
-		String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_USUARIO_REPORTE(?,?,?,?,?)";
+		String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_USUARIO_REPORTE(?,?,?,?,?)";
 		ArrayList<Object> parametros = new ArrayList<Object>();
 		parametros.add(objUsuario.getCuentaUsuario());
 		parametros.add(objUsuario.getCodigoROL());
@@ -373,7 +376,7 @@ public class ReporteBrechasFactory {
      }*/
     public ArrayList<HashMap<String, Object>> selectUsuarioReporte(String cuentaUsuario) throws Exception {
         ArrayList<HashMap<String, Object>> usuario = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_USUARIO_REPORTE(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_USUARIO_REPORTE(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuentaUsuario);
         usuario = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -383,14 +386,14 @@ public class ReporteBrechasFactory {
     /* TRAFOS REPETIDOS */
     public ArrayList<HashMap<String, Object>> selecttTrafosRepetidos() throws Exception {
         ArrayList<HashMap<String, Object>> listTrafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_REPETIDOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_REPETIDOS(?)";
         listTrafos = dbo.SQL_CALL_PROCEDURE(sql);
         return listTrafos;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosDepartamento(String codigoUnidad) throws Exception {
         ArrayList<HashMap<String, Object>> trafosD = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_DEPARTAMENTO(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_DEPARTAMENTO(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoUnidad);
         trafosD = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -399,7 +402,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectDetTrafosDepartamento(String codigoUnidad) throws Exception {
         ArrayList<HashMap<String, Object>> trafosD = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_DET_TRAFOS_DEPAR(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_DET_TRAFOS_DEPAR(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoUnidad);
         trafosD = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -408,21 +411,21 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectTrafosSinCarga() throws Exception {
         ArrayList<HashMap<String, Object>> listTrafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SIN_CARGA(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SIN_CARGA(?)";
         listTrafos = dbo.SQL_CALL_PROCEDURE(sql);
         return listTrafos;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosDesconectados() throws Exception {
         ArrayList<HashMap<String, Object>> listTrafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_DESCONECTADOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_DESCONECTADOS(?)";
         listTrafos = dbo.SQL_CALL_PROCEDURE(sql);
         return listTrafos;
     }
 
     public ArrayList<HashMap<String, Object>> selecttTrafosSobrecargados(Number may, Number men) throws Exception {
         ArrayList<HashMap<String, Object>> listTrafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SOBRECARGADOS(?,?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SOBRECARGADOS(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(may);
         parametros.add(men);
@@ -432,7 +435,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectTrafosSobrecargadosDepartamento(String objectID) throws Exception {
         ArrayList<HashMap<String, Object>> trafosD = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SOBRECAR_DEP(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SOBRECAR_DEP(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(objectID);
         trafosD = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -441,7 +444,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteTrafosUsuario(String codigoU) throws Exception {
         ArrayList<HashMap<String, Object>> reporteUsuario = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_TRAFOS_USER(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_TRAFOS_USER(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoU);
         reporteUsuario = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -450,7 +453,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteTrafosFechaSinCarga(Date fecha) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_FECHA_SCA(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_FECHA_SCA(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -459,7 +462,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteTrafosFechaSobrecargados(Date fecha) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_FECHA_SOB(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_FECHA_SOB(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -468,7 +471,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteTrafosFechaRepetidos(Date fecha) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_FECHA_REP(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_FECHA_REP(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -477,7 +480,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistorialReportesTrafos(Date fecha, Date fecha2, String usuario) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HISTORIAL_REPOR_TRAF(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HISTORIAL_REPOR_TRAF(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -488,7 +491,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteTrafosSeleccionadoSinCarga(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_SELE_SCA(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_SELE_SCA(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -497,7 +500,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteTrafosSeleccionadoSobrecargados(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_SELE_SOB(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_SELE_SOB(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -506,7 +509,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteTrafosSeleccionadoRepetidos(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_SELE_REP(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPOR_TRAF_SELE_REP(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -516,7 +519,7 @@ public class ReporteBrechasFactory {
     public String insertarReporteTrafos(
             ReporteTrafos obj_rep_trafos
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REPORTE_TRAFOS(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REPORTE_TRAFOS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos.getCUENTA_USUARIO());
         parametros.add(obj_rep_trafos.getFECHA());
@@ -527,7 +530,7 @@ public class ReporteBrechasFactory {
     public String insertarReporteTrafosRepetidos(
             ReporteTrafosDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REP_TRAF_REPETIDOS(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REP_TRAF_REPETIDOS(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -540,7 +543,7 @@ public class ReporteBrechasFactory {
     /*public void insertarReporteTrafosRepetidos2(
             ReporteTrafosDepartamentos obj_rep_trafos_d
 	)throws Exception{
-		String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_INSERT_REP_TRAF_REPETIDOS(?,?,?)";
+		String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_INSERT_REP_TRAF_REPETIDOS(?,?,?)";
 		ArrayList<Object> parametros = new ArrayList<Object>();
 		parametros.add(obj_rep_trafos_d.getCODIGO());
                 parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -550,7 +553,7 @@ public class ReporteBrechasFactory {
     public String insertarReporteTrafosSinCarga(
             ReporteTrafosDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REP_TRAF_SIN_CARGA(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REP_TRAF_SIN_CARGA(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -563,7 +566,7 @@ public class ReporteBrechasFactory {
     public String insertarReporteTrafosSobrecargados(
             ReporteTrafosDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_REP_TRAF_SOBRECARGA(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_REP_TRAF_SOBRECARGA(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -575,7 +578,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectContratistas() throws Exception {
         ArrayList<HashMap<String, Object>> listTrafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_CONTRATISTAS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_CONTRATISTAS(?)";
         listTrafos = dbo.SQL_CALL_PROCEDURE(sql);
         return listTrafos;
     }
@@ -583,7 +586,7 @@ public class ReporteBrechasFactory {
     public String insertarContratistas(
             Contratistas obj_contratistas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_CONTRATISTAS(?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_CONTRATISTAS(?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_contratistas.getDPNUM_CONTRA_CEDULA());
         parametros.add(obj_contratistas.getDPNUM_CONTRA_NOMBRE());
@@ -599,7 +602,7 @@ public class ReporteBrechasFactory {
     public String actualizarContratistas(
             Contratistas obj_contratistas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_UPDATE_CONTRATISTAS(?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_UPDATE_CONTRATISTAS(?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_contratistas.getDPNUM_CONTRA_COD());
         parametros.add(obj_contratistas.getDPNUM_CONTRA_CEDULA());
@@ -616,7 +619,7 @@ public class ReporteBrechasFactory {
     public String eliminarContratistas(
             Contratistas obj_contratistas
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_DELETE_CONTRATISTAS(?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_DELETE_CONTRATISTAS(?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_contratistas.getDPNUM_CONTRA_COD());
         Object msg = dbo.SQL_CALL_FUNCTION(sql_fun, parametros);
@@ -625,14 +628,14 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectClaseEquipo() throws Exception {
         ArrayList<HashMap<String, Object>> listclases = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_CLASES_EQUIPO(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_CLASES_EQUIPO(?)";
         listclases = dbo.SQL_CALL_PROCEDURE(sql);
         return listclases;
     }
 
     public ArrayList<HashMap<String, Object>> selectTipoEquipos(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> reporteProvinciaGis = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TIPO_EQUIPO(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TIPO_EQUIPO(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         reporteProvinciaGis = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -641,7 +644,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectNumeracionFinal(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> numeracionFinal = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_NUMERACION_FINAL(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_NUMERACION_FINAL(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         numeracionFinal = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -651,7 +654,7 @@ public class ReporteBrechasFactory {
     public String insertarNumeracionEquipo(
             EnumeracionEquipos obj_enumEquipos
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_ASIGNACION(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_ASIGNACION(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_enumEquipos.getDPNUM_CONTRA_COD());
         parametros.add(obj_enumEquipos.getDPNUM_TIPO_COD());
@@ -676,7 +679,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectAsignacionFinal(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> numeracionFinal = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_ASIGNACION_FINAL(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_ASIGNACION_FINAL(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         numeracionFinal = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -686,7 +689,7 @@ public class ReporteBrechasFactory {
     public String actualizarNumeracionEquipo(
             EnumeracionEquipos obj_enumEquipos
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_UPDATE_ENUMERACION_FINAL(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_UPDATE_ENUMERACION_FINAL(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_enumEquipos.getDPNUM_EQUIP_COD());
         parametros.add(obj_enumEquipos.getDPNUM_CONTRA_COD());
@@ -709,7 +712,7 @@ public class ReporteBrechasFactory {
     public String eliminarNumeracionEquipo(
             EnumeracionEquipos obj_enumEquipos
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_DELETE_ENUMERACION_FINAL(?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_DELETE_ENUMERACION_FINAL(?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_enumEquipos.getDPNUM_EQUIP_COD());
         parametros.add(obj_enumEquipos.getDPNUM_EQUIP_CANTIDAD());
@@ -722,7 +725,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectNumeracion() throws Exception {
         ArrayList<HashMap<String, Object>> listclases = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_NUMERACION(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_NUMERACION(?)";
         listclases = dbo.SQL_CALL_PROCEDURE(sql);
         return listclases;
     }
@@ -730,7 +733,7 @@ public class ReporteBrechasFactory {
     public String insertarNumeracionDevuelta(
             EnumeracionEquipos obj_enumEquipos
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_NUMERACION_DEV(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_NUMERACION_DEV(?,?,?,?,?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_enumEquipos.getDPNUM_CONTRA_COD());
         parametros.add(obj_enumEquipos.getDPNUM_TIPO_COD());
@@ -755,7 +758,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectNumeracionDev() throws Exception {
         ArrayList<HashMap<String, Object>> listclases = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_NUMERACION_DEV(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_NUMERACION_DEV(?)";
         listclases = dbo.SQL_CALL_PROCEDURE(sql);
         return listclases;
     }
@@ -763,7 +766,7 @@ public class ReporteBrechasFactory {
     public String insertarNumeracionEquipoDev(
             EnumeracionEquipos obj_enumEquipos
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_ASIGNACION_DEVUELTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_ASIGNACION_DEVUELTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_enumEquipos.getDPNUM_CONTRA_COD());
         parametros.add(obj_enumEquipos.getDPNUM_TIPO_COD());
@@ -789,7 +792,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectContratistaCedula(String cedula) throws Exception {
         ArrayList<HashMap<String, Object>> contratista = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_CONTRATISTA_CEDULA(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_CONTRATISTA_CEDULA(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cedula);
         contratista = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -798,7 +801,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteNumeracion(Date fecha, Date fecha2, Number contra, Number clase, String opcion) throws Exception {
         ArrayList<HashMap<String, Object>> contratista = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_REPORTE_NUMERACION(?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_REPORTE_NUMERACION(?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -813,7 +816,7 @@ public class ReporteBrechasFactory {
     public ArrayList<HashMap<String, Object>> selectReporteNumeracionByNumberEquip(Number numEquip, Number numEquipInferior,
             Number numEquipSuperior, Number clase) throws Exception {
         ArrayList<HashMap<String, Object>> reporteResultado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_NUM_ESTRUCTURAS(?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_NUM_ESTRUCTURAS(?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(numEquip);
         parametros.add(numEquipInferior);
@@ -825,7 +828,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectSectores() throws Exception {
         ArrayList<HashMap<String, Object>> listSectores = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_SECTORES(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_SECTORES(?)";
         listSectores = dbo.SQL_CALL_PROCEDURE(sql);
         return listSectores;
     }
@@ -833,7 +836,7 @@ public class ReporteBrechasFactory {
     public ArrayList<HashMap<String, Object>> selectReporteNumeracionSectores(String sector, Number clase, Date fechaInicial,
             Date fechaFinal, String anio) throws Exception {
         ArrayList<HashMap<String, Object>> reporteResultado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_NUM_SECTORES(?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_NUM_SECTORES(?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(sector);
         parametros.add(clase);
@@ -846,7 +849,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectPermisosNumeracion(String usuarioNombre) throws Exception {
         ArrayList<HashMap<String, Object>> listPermisos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_PERMISSION_TEQ(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_PERMISSION_TEQ(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(usuarioNombre);
         listPermisos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -855,7 +858,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectClaseEquiposNumeracion(String usuarioNombre) throws Exception {
         ArrayList<HashMap<String, Object>> listclases = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_NUM_CLAS_EQUIPOS(?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_NUM_CLAS_EQUIPOS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(usuarioNombre);
         listclases = dbo.SQL_CALL_PROCEDURE(sql, parametros);
@@ -864,7 +867,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> debeGenerarTicketEquipo(int equipo) throws Exception {
         ArrayList<HashMap<String, Object>> numeracionFinal = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SEL_GENERA_TICKET(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SEL_GENERA_TICKET(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(equipo);
         numeracionFinal = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -872,7 +875,7 @@ public class ReporteBrechasFactory {
     }
 
     public String gestionarPermisosNumeracion(String usuarioNombre, Number codModulo, Number codClase, String operacion) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_ROLES_NUM(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_ROLES_NUM(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(usuarioNombre);
         parametros.add(codModulo);
@@ -884,7 +887,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectReporteEquiposUsuarioFechas(String codigoU) throws Exception {
         ArrayList<HashMap<String, Object>> reporteUsuario = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_REP_EQ_USER(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_REP_EQ_USER(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigoU);
         reporteUsuario = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -893,7 +896,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectEqPostesRepetidos(Date fecha) throws Exception {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_POSTES_REPETIDOS(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_POSTES_REPETIDOS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         listaRepetidos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -902,7 +905,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectEqCuchillaRepetidos(Date fecha) throws Exception {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_CUCHILLA_REPETIDOS(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_CUCHILLA_REPETIDOS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         listaRepetidos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -911,7 +914,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectEqFusibleRepetidos(Date fecha) throws Exception {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_FUSIBLE_REPETIDOS(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_FUSIBLE_REPETIDOS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         listaRepetidos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -920,7 +923,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectEqLuminariasRepetidos(Date fecha) throws Exception {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_LUMINARIAS_REPETIDOS(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_LUMINARIAS_REPETIDOS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         listaRepetidos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -933,13 +936,13 @@ public class ReporteBrechasFactory {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
         String sqlFun = "";
         if(opcion == 1){
-            sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_ACTUAL_POSTES_PROV(?)";
+            sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_ACTUAL_POSTES_PROV(?)";
         }else if(opcion ==2){
-            sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_ACTUAL_CUCHILLAS_PROV(?)";
+            sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_ACTUAL_CUCHILLAS_PROV(?)";
         }else if (opcion ==3){
-            sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_ACTUAL_FUSIBLES_PROV(?)";
+            sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_ACTUAL_FUSIBLES_PROV(?)";
         }else{
-            sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_ACTUAL_LUMINARIAS_PROV(?)";
+            sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_ACTUAL_LUMINARIAS_PROV(?)";
         }
 
         ArrayList<Object> parametros = new ArrayList<Object>();
@@ -950,7 +953,7 @@ public class ReporteBrechasFactory {
      */
     public ArrayList<HashMap<String, Object>> selectActualRepetidosProvincias(int opcion) throws Exception {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_REP_HISTORICO_PROV(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_REP_HISTORICO_PROV(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(opcion);
         listaRepetidos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -959,7 +962,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectActualRepetidosDepartamentos(int opcion) throws Exception {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_REP_HISTORICO_DEP(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_REP_HISTORICO_DEP(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(opcion);
         listaRepetidos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -967,7 +970,7 @@ public class ReporteBrechasFactory {
     }
 
     public String insertarReporteEquiposRepetidos(ReporteEquipos obj_rep_trafos) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_EQUIPOS_REPETIDOS(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_EQUIPOS_REPETIDOS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos.getCUENTA_USUARIO());
         parametros.add(obj_rep_trafos.getFECHA());
@@ -978,7 +981,7 @@ public class ReporteBrechasFactory {
     public String insertarReportePostesRepetidos(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_POSTES_REP(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_POSTES_REP(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -991,7 +994,7 @@ public class ReporteBrechasFactory {
     public String insertarCuchillasRepetidos(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_CUCHILLAS_REP(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_CUCHILLAS_REP(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -1004,7 +1007,7 @@ public class ReporteBrechasFactory {
     public String insertarFusiblesRepetidos(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_FUSIBLES_REP(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_FUSIBLES_REP(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -1017,7 +1020,7 @@ public class ReporteBrechasFactory {
     public String insertarLuminariasRepetidos(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_LUMINARIAS_REP(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_LUMINARIAS_REP(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -1029,7 +1032,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectGlobalRepetidos(Date fecha, int opcion) throws Exception {
         ArrayList<HashMap<String, Object>> listaRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_GLOB_CANT_REPETIDOS(?,?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_GLOB_CANT_REPETIDOS(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(opcion);
@@ -1039,7 +1042,7 @@ public class ReporteBrechasFactory {
 
     public int selectExistenDevoluciones(int tipo) throws Exception {
         ArrayList<HashMap<String, Object>> respuesta = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_EXISTEN_DEVOLUCIONES(?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_EXISTEN_DEVOLUCIONES(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(tipo);
         respuesta = dbo.SQL_CALL_PROCEDURE(sql, parametros);
@@ -1059,7 +1062,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectPermisosGestionContratistas(String usuarioNombre) throws Exception {
         ArrayList<HashMap<String, Object>> listPermisos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SEL_PERMISOS_CONTRATISTAS(?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SEL_PERMISOS_CONTRATISTAS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(usuarioNombre);
         listPermisos = dbo.SQL_CALL_PROCEDURE(sqlFun, parametros);
@@ -1067,7 +1070,7 @@ public class ReporteBrechasFactory {
     }
 
     public String gestionarRolesContratistas(String usuarioNombre, Number permiso) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_GEST_PERMISOS_CONTRATISTAS(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_GEST_PERMISOS_CONTRATISTAS(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(usuarioNombre);
         parametros.add(permiso);
@@ -1077,7 +1080,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasDepartamento(Date fecha, Date fecha2, Number opcion) throws Exception {
         ArrayList<HashMap<String, Object>> listPermisos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_REP_EST_DEP(?,?,?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_REP_EST_DEP(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -1088,7 +1091,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasProvincias(Date fecha, Date fecha2, Number opcion) throws Exception {
         ArrayList<HashMap<String, Object>> listPermisos = new ArrayList<HashMap<String, Object>>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_REP_EST_PROV(?,?,?,?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_REP_EST_PROV(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -1100,7 +1103,7 @@ public class ReporteBrechasFactory {
     public String insertarPostesRepetidosProv(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_POSTES_REP_PROV(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_POSTES_REP_PROV(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -1113,7 +1116,7 @@ public class ReporteBrechasFactory {
     public String insertarCuchillasRepetidosProv(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_CUCHILLAS_REP_PROV(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_CUCHILLAS_REP_PROV(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -1126,7 +1129,7 @@ public class ReporteBrechasFactory {
     public String insertarFusiblesRepetidosProv(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_FUSIBLES_REP_PROV(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_FUSIBLES_REP_PROV(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -1139,7 +1142,7 @@ public class ReporteBrechasFactory {
     public String insertarLuminariasRepetidosProv(
             ReporteEquiposDepartamentos obj_rep_trafos_d
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_INSERT_LUMINARIAS_REP_PROV(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_INSERT_LUMINARIAS_REP_PROV(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_rep_trafos_d.getCODIGO());
         parametros.add(obj_rep_trafos_d.getDEPARTAMENTO());
@@ -1151,7 +1154,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectCertificacionesBusquedaControl(Number codigo, Number nmin, Number nmax) throws Exception {
         ArrayList<HashMap<String, Object>> reporteResultado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_NUM_CERTIF(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_NUM_CERTIF(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         parametros.add(nmin);
@@ -1163,7 +1166,7 @@ public class ReporteBrechasFactory {
     //Sirve para encontrar los datos de una enumeracion en concreto.
     public ArrayList<HashMap<String, Object>> selectCertificacionPorNumeracion(Number codigo, Number valor) throws Exception {
         ArrayList<HashMap<String, Object>> reporteResultado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_CERTIF(?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_CERTIF(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         parametros.add(valor);
@@ -1174,20 +1177,20 @@ public class ReporteBrechasFactory {
     /*
     public ArrayList<HashMap<String, Object>> selectContrato() throws Exception {
         ArrayList<HashMap<String, Object>> reporteResultado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_CONTRATOS(?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_CONTRATOS(?)";
         reporteResultado = dbo.SQL_CALL_PROCEDURE(sql_fun);
         return reporteResultado;
     }*/
     public ArrayList<HashMap<String, Object>> selectSeccionesNumeracion() throws Exception {
         ArrayList<HashMap<String, Object>> reporteResultado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_SECCIONES_NUM(?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_SECCIONES_NUM(?)";
         reporteResultado = dbo.SQL_CALL_PROCEDURE(sql_fun);
         return reporteResultado;
     }
 
     public ArrayList<HashMap<String, Object>> selectObjExcluidosPorTipo(String tipo) throws Exception {
         ArrayList<HashMap<String, Object>> reporteResultado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_OBJ_EXCLUIDOS(?, ?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_OBJ_EXCLUIDOS(?, ?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(tipo);
         reporteResultado = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1198,20 +1201,20 @@ public class ReporteBrechasFactory {
     // Perdidas
     public ArrayList<HashMap<String, Object>> selectLumAlimCanton() throws Exception {
         ArrayList<HashMap<String, Object>> luminarias = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_LUM_ALI_CANTON(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_LUM_ALI_CANTON(?)";
         luminarias = dbo.SQL_CALL_PROCEDURE(sql);
         return luminarias;
     }
 
     public ArrayList<HashMap<String, Object>> selectSemCanton() throws Exception {
         ArrayList<HashMap<String, Object>> semaforo = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_SEM_CANTON(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_SEM_CANTON(?)";
         semaforo = dbo.SQL_CALL_PROCEDURE(sql);
         return semaforo;
     }
 
     public String insertarPE(String cuenta, String fecha, String coment, String opcion) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_PERDIDAS_E(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_PERDIDAS_E(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         parametros.add(fecha);
@@ -1222,7 +1225,7 @@ public class ReporteBrechasFactory {
     }
 
     public String insertarDetPerCLi(String codigo, String alim, Number num_abo, Number total) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_PERDIDAS_DET_CLI(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_PERDIDAS_DET_CLI(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         parametros.add(alim);
@@ -1235,7 +1238,7 @@ public class ReporteBrechasFactory {
     public String insertarDetalleAP(
             AlumbradoPublico obj_AP
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_DET_ALUMBRADO_PUBLICO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_DET_ALUMBRADO_PUBLICO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_AP.getDPRAP_CODIGO());
         parametros.add(obj_AP.getDRPAD_ANIO());
@@ -1264,7 +1267,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistorialPE(Date fecha, Date fecha2, String usuario, String opcion) throws Exception {
         ArrayList<HashMap<String, Object>> reporteAlumP = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HISTORIA_PERDIDAS(?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HISTORIA_PERDIDAS(?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -1276,7 +1279,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistAlumSel(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> alumbrado = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HIST_ALUM_SEL (?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HIST_ALUM_SEL (?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         alumbrado = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1285,7 +1288,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistCliECSel(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> cliEC = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HIST_CLIEC_SEL(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HIST_CLIEC_SEL(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         cliEC = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1295,7 +1298,7 @@ public class ReporteBrechasFactory {
     //Proyectos Liquidados
     public ArrayList<HashMap<String, Object>> selectInventarioFinalPL(String valor, String opcion) throws Exception {
         ArrayList<HashMap<String, Object>> InvFinal = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_FINALPL(?,?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_FINALPL(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(valor);
         parametros.add(opcion);
@@ -1305,7 +1308,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectInventarioInicialPL(String valor, String opcion) throws Exception {
         ArrayList<HashMap<String, Object>> InvFinal = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_INICIALPL(?,?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_INICIALPL(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(valor);
         parametros.add(opcion);
@@ -1315,7 +1318,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectInventarioFinalPLCOD(String cod, String anio) throws Exception {
         ArrayList<HashMap<String, Object>> InvFinal = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_FINALPL_C(?,?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_FINALPL_C(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cod);
         parametros.add(anio);
@@ -1325,7 +1328,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectInventarioInicialPLCOD(String cod, String anio) throws Exception {
         ArrayList<HashMap<String, Object>> InvFinal = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_INIPL_C(?,?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_INVENTARIO_INIPL_C(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cod);
         parametros.add(anio);
@@ -1336,14 +1339,14 @@ public class ReporteBrechasFactory {
     //Gestion Usuarios
     public ArrayList<HashMap<String, Object>> selectRoles() throws Exception {
         ArrayList<HashMap<String, Object>> usuarios = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_ROLES(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_ROLES(?)";
         usuarios = dbo.SQL_CALL_PROCEDURE(sql);
         return usuarios;
     }
 
     public ArrayList<HashMap<String, Object>> selectUsuarios() throws Exception {
         ArrayList<HashMap<String, Object>> usuarios = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_USUARIOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_USUARIOS(?)";
         usuarios = dbo.SQL_CALL_PROCEDURE(sql);
         return usuarios;
     }
@@ -1351,7 +1354,7 @@ public class ReporteBrechasFactory {
     public String bloquearUsuario(
             Usuarios obj_usuario
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_BLOQUEAR_USUARIO(?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_BLOQUEAR_USUARIO(?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_usuario.getDPRUS_CUENTA());
         Object msg = dbo.SQL_CALL_FUNCTION(sql_fun, parametros);
@@ -1360,7 +1363,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectUsuarioCuenta(String cuenta) throws Exception {
         ArrayList<HashMap<String, Object>> contratista = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_USUARIO_CUENTA(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_USUARIO_CUENTA(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         contratista = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1370,7 +1373,7 @@ public class ReporteBrechasFactory {
     public String insertarUsuario(
             Usuarios obj_usuarios
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_USUARIO(?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_USUARIO(?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_usuarios.getDPRUS_CUENTA());
         parametros.add(obj_usuarios.getDPROL_CODIGO());
@@ -1384,7 +1387,7 @@ public class ReporteBrechasFactory {
     public String actualizarUsuario(
             Usuarios obj_usuarios
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_UPDATE_USUARIO(?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_UPDATE_USUARIO(?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_usuarios.getDPRUS_CUENTA());
         parametros.add(obj_usuarios.getDPROL_CODIGO());
@@ -1397,14 +1400,14 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectModulos() throws Exception {
         ArrayList<HashMap<String, Object>> usuarios = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_MODULOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_MODULOS(?)";
         usuarios = dbo.SQL_CALL_PROCEDURE(sql);
         return usuarios;
     }
 
     public ArrayList<HashMap<String, Object>> selectModuloUsuario(String cuenta) throws Exception {
         ArrayList<HashMap<String, Object>> contratista = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_MODULO_USUARIO(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_MODULO_USUARIO(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         contratista = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1413,7 +1416,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectModuloAsignado(String cuenta, String codM) throws Exception {
         ArrayList<HashMap<String, Object>> contratista = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_MODULO_ASIGNADO(?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_MODULO_ASIGNADO(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         parametros.add(codM);
@@ -1422,7 +1425,7 @@ public class ReporteBrechasFactory {
     }
 
     public String insertarModuloAsignado(String cuenta, String codM) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_ASIGNACION_M(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_ASIGNACION_M(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         parametros.add(codM);
@@ -1431,7 +1434,7 @@ public class ReporteBrechasFactory {
     }
 
     public String deleteModuloAsignado(String cuenta, String codM) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_DELETE_ASIGNACION_M(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_DELETE_ASIGNACION_M(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         parametros.add(codM);
@@ -1441,7 +1444,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectModulosUsuario(String cuenta) throws Exception {
         ArrayList<HashMap<String, Object>> modulos = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_USUARIO_MOD(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_USUARIO_MOD(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         modulos = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1450,35 +1453,35 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectTrafosAereos() throws Exception {
         ArrayList<HashMap<String, Object>> usuarios = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_AEREOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_AEREOS(?)";
         usuarios = dbo.SQL_CALL_PROCEDURE(sql);
         return usuarios;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosPreesamblados() throws Exception {
         ArrayList<HashMap<String, Object>> usuarios = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_PREESAMBLADOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_PREESAMBLADOS(?)";
         usuarios = dbo.SQL_CALL_PROCEDURE(sql);
         return usuarios;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosSubterraneos() throws Exception {
         ArrayList<HashMap<String, Object>> usuarios = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SUBTERRANEOS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_SUBTERRANEOS(?)";
         usuarios = dbo.SQL_CALL_PROCEDURE(sql);
         return usuarios;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosPreesambladosSub() throws Exception {
         ArrayList<HashMap<String, Object>> usuarios = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_PRESUBTE(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_PRESUBTE(?)";
         usuarios = dbo.SQL_CALL_PROCEDURE(sql);
         return usuarios;
     }
 
     public ArrayList<HashMap<String, Object>> selectMaterialesPL(String cod) throws Exception {
         ArrayList<HashMap<String, Object>> materiales = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_MATERIALESPL(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_MATERIALESPL(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cod);
         materiales = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1487,7 +1490,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectPotencia(String valor) throws Exception {
         ArrayList<HashMap<String, Object>> materiales = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_POTENCIA(?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_POTENCIA(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(valor);
         materiales = dbo.SQL_CALL_PROCEDURE(sql, parametros);
@@ -1496,34 +1499,34 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectTrafosMediaLongA() throws Exception {
         ArrayList<HashMap<String, Object>> trafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_LONGA(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_LONGA(?)";
         trafos = dbo.SQL_CALL_PROCEDURE(sql);
         return trafos;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosMediaLongS() throws Exception {
         ArrayList<HashMap<String, Object>> trafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_LONGS(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_LONGS(?)";
         trafos = dbo.SQL_CALL_PROCEDURE(sql);
         return trafos;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosMediaMono() throws Exception {
         ArrayList<HashMap<String, Object>> trafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_MONO(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_MONO(?)";
         trafos = dbo.SQL_CALL_PROCEDURE(sql);
         return trafos;
     }
 
     public ArrayList<HashMap<String, Object>> selectTrafosMediaTrifa() throws Exception {
         ArrayList<HashMap<String, Object>> trafos = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_TRIFA(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_TRAFOS_MED_TRIFA(?)";
         trafos = dbo.SQL_CALL_PROCEDURE(sql);
         return trafos;
     }
 
     public String insertarInfraestructura(String cuenta, String fecha, String opcion) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_INFRAESTRUCTURA(?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_INFRAESTRUCTURA(?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(cuenta);
         parametros.add(fecha);
@@ -1535,7 +1538,7 @@ public class ReporteBrechasFactory {
     public String insertarDetalleInfRS(
             RedesSecundarias obj_INF
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_DET_INF_REDES_S(?,?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_DET_INF_REDES_S(?,?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_INF.getDPIRS_CODIGO());
         parametros.add(obj_INF.getDPIRS_TIPO_RED());
@@ -1553,7 +1556,7 @@ public class ReporteBrechasFactory {
     public String insertarDetalleInfMT(
             RedesMT obj_INF
     ) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERT_DET_INF_REDES_MT(?,?,?,?,?,?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERT_DET_INF_REDES_MT(?,?,?,?,?,?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(obj_INF.getDPRMT_CODIGO());
         parametros.add(obj_INF.getDIDMT_NOM_ALI());
@@ -1571,7 +1574,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistInfraestructura(Date fecha, Date fecha2, String usuario, String opcion) throws Exception {
         ArrayList<HashMap<String, Object>> infraestructura = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HISTORIA_INFRAESTRUC(?,?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HISTORIA_INFRAESTRUC(?,?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -1583,7 +1586,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistInfMT(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> infraestructura = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HIST_INFRMT_SEL(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HIST_INFRMT_SEL(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         infraestructura = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1592,7 +1595,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistInfRS(String codigo) throws Exception {
         ArrayList<HashMap<String, Object>> infraestructura = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_HIST_INFRS_SEL(?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_HIST_INFRS_SEL(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(codigo);
         infraestructura = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
@@ -1600,7 +1603,7 @@ public class ReporteBrechasFactory {
     }
 
     public String updateClienteA(String fecha) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_UPDATE_CLI_ALI(?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.F_UPDATE_CLI_ALI(?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         Object msg = dbo.SQL_CALL_FUNCTION(sql_fun, parametros);
@@ -1609,7 +1612,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectECA(String fecha) throws Exception {
         ArrayList<HashMap<String, Object>> clientes = new ArrayList<HashMap<String, Object>>();
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_EC_CLI_ALI(?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_EC_CLI_ALI(?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         clientes = dbo.SQL_CALL_PROCEDURE(sql, parametros);
@@ -1618,7 +1621,7 @@ public class ReporteBrechasFactory {
 
     //verificacion concurrencia
     public String verificarNumeracionDisponible(Number tipoCod, Number numInferior, Number numSuperior, Number equipCod) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.F_VERIFICAR_NUMERACION(?, ?, ?, ?)"; // <- 4 parámetros
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.F_VERIFICAR_NUMERACION(?, ?, ?, ?)"; // <- 4 parámetros
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(tipoCod);
         parametros.add(numInferior);
@@ -1630,13 +1633,13 @@ public class ReporteBrechasFactory {
 
     //Años de los contratos:
     public ArrayList<HashMap<String, Object>> selectAniosContratos() throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_ANIOS_CONTRATOS(?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_ANIOS_CONTRATOS(?)";
         return dbo.SQL_CALL_PROCEDURE(sql_fun);
     }
     //Contratos por años
 
     public ArrayList<HashMap<String, Object>> selectContratosPorAnio(String anio) throws Exception {
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_CONTRATOS_ANIO(?, ?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_CONTRATOS_ANIO(?, ?)";
         ArrayList<Object> params = new ArrayList<Object>();
         params.add(anio); // este es el parámetro IN_ANIO
         return dbo.SQL_CALL_PROCEDURE(sql_fun, params);
@@ -1645,7 +1648,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectHistorialReportesRepetidos(Date fecha, Date fecha2, String usuario) throws Exception {
         ArrayList<HashMap<String, Object>> reporteRepetidos = new ArrayList<HashMap<String, Object>>();
-        String sql_fun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_HIST_REPETIDOS(?,?,?,?)";
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_HIST_REPETIDOS(?,?,?,?)";
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(fecha);
         parametros.add(fecha2);
@@ -1657,7 +1660,7 @@ public class ReporteBrechasFactory {
 
     public ArrayList<HashMap<String, Object>> selectRepetidosEstructurasUnaFecha(Date fecha, int opcion) throws Exception {
         ArrayList<HashMap<String, Object>> resultados = new ArrayList<>();
-        String sqlFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE_2024.SP_SELECT_REP_EST_PROV_UF(?, ?, ?)";
+        String sqlFun = ESQUEMA + ".PKG_DBS_REPORTE_2024.SP_SELECT_REP_EST_PROV_UF(?, ?, ?)";
         ArrayList<Object> parametros = new ArrayList<>();
         parametros.add(fecha);
         parametros.add(opcion);
@@ -1669,7 +1672,7 @@ public class ReporteBrechasFactory {
     public ArrayList<HashMap<String, Object>> selectBloquesPostesNumerados() throws Exception {
         ArrayList<HashMap<String, Object>> lista = new ArrayList<HashMap<String, Object>>();
         // REPORTES_GIS_PRUEBAS es el esquema, PKG_DBS_REPORTE el paquete y SP_SELECT_BLOQUES_POSTES el procedimiento
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_SELECT_BLOQUES_POSTES(?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_BLOQUES_POSTES(?)";
         lista = dbo.SQL_CALL_PROCEDURE(sql);
         return lista;
     }
@@ -1679,7 +1682,7 @@ public class ReporteBrechasFactory {
     String resultado = "OK";
 
     for (int i = inicio; i <= fin; i++) {
-        String nombreFun = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.F_INSERTAR_POSTE_DETALLE(?,?,?,?,?,?,?)";
+        String nombreFun = ESQUEMA + ".PKG_DBS_REPORTE.F_INSERTAR_POSTE_DETALLE(?,?,?,?,?,?,?)";
 
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(equipCod);     // 1: IN_EQUIP_COD
@@ -1703,7 +1706,7 @@ public class ReporteBrechasFactory {
     public ArrayList<HashMap<String, Object>> consultarPostesAsignados(int equipCod) throws Exception {
         ArrayList<HashMap<String, Object>> lista = new ArrayList<HashMap<String, Object>>();
         // El primer ? es para el cursor (OUT_CURSOR) y el segundo para el ID del equipo (IN_EQUIP_COD)
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_CONSULTAR_POSTES_ASIGNADOS(?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_CONSULTAR_POSTES_ASIGNADOS(?,?)";
 
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(equipCod); // Este valor se asocia al segundo ? porque el primero es reservado para el cursor en SQL_CALL_PROCEDURE
@@ -1718,7 +1721,7 @@ public class ReporteBrechasFactory {
     public HashMap<String, Object> obtenerMailContratista(int contraCod) throws Exception {
         ArrayList<HashMap<String, Object>> resultado = new ArrayList<HashMap<String, Object>>();
         // Tu procedure: SP_GET_MAIL_CONTRATISTA(OUT_CURSOR, IN_CONTRA_COD)
-        String sql = "REPORTES_GIS_PRUEBAS.PKG_DBS_REPORTE.SP_GET_MAIL_CONTRATISTA(?,?)";
+        String sql = ESQUEMA + ".PKG_DBS_REPORTE.SP_GET_MAIL_CONTRATISTA(?,?)";
         
         ArrayList<Object> parametros = new ArrayList<Object>();
         parametros.add(contraCod); 
