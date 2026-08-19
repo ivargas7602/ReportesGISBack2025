@@ -19,3 +19,4 @@ work/
 target/
 *.war
 node_modules/
+/dist/

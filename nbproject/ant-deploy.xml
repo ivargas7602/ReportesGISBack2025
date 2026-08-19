@@ -42,7 +42,7 @@ Contributor(s):
     <target name="-deploy-ant" if="deploy.ant.enabled">
         <fail message="Deploy is not supported for the current target server"/>
     </target>
-    <target name="-undeploy-ant" if="deploy.ant.enabled">|
+    <target name="-undeploy-ant" if="deploy.ant.enabled">
         <fail message="Undeploy is not supported for the current target server"/>
     </target>
 </project>

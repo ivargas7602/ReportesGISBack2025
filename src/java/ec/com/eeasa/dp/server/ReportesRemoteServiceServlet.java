@@ -20,7 +20,7 @@ public class ReportesRemoteServiceServlet {
             Boolean usarWebLogic = true;
             String lookupName = "gispruebasDS";
             //DESCOMENTAR PARA PRODUCCION
-            //String lookupName = "ReportesGisDS";
+            // String lookupName = "ReportesGisDS";
 
             try {
                 if (usarWebLogic) {
