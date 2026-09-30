@@ -1089,7 +1089,7 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
             return;
         }
 
-        String correoDestino = "gaboleon1996@gmail.com";
+        String correoDestino = datos.get("EMAIL").toString();
         String nombreContra = datos.get("NOMBRE_COMPLETO").toString();
         EnviarMail mailer = new EnviarMail();
         String imgLogo = "<img src='cid:logo_eeasa' width='150'>";
