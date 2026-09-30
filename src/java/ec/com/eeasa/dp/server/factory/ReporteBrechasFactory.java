@@ -1727,8 +1727,9 @@ public class ReporteBrechasFactory {
         parametros.add(contraCod); 
         
         resultado = dbo.SQL_CALL_PROCEDURE(sql, parametros);
-        
+        System.out.println("--Contrato: " + contraCod);
         if (!resultado.isEmpty()) {
+            System.out.println("++resultado: " + resultado.get(0));
             return resultado.get(0); // Retorna EMAIL y NOMBRE_COMPLETO
         }
         return null;

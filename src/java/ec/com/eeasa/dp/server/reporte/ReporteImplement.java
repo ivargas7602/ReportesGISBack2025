@@ -1084,6 +1084,7 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
 
     // AHORA RECIBE EL FACTORY para reutilizar la conexión
     private void enviarCorreoUnico(ReporteBrechasFactory factory, int contraCod, String tipo, String detalle, String excelB64, String pdfB64) throws Exception {
+        System.out.println("Preparando para enviar correo al contratista con código: " + contraCod + ", tipo: " + tipo);
         HashMap<String, Object> datos = factory.obtenerMailContratista(contraCod);
         if (datos == null) {
             return;
@@ -1092,17 +1093,14 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         String correoDestino = datos.get("EMAIL").toString();
         String nombreContra = datos.get("NOMBRE_COMPLETO").toString();
         EnviarMail mailer = new EnviarMail();
-        String imgLogo = "<img src='cid:logo_eeasa' width='150'>";
+        System.out.println("datos: " + datos);
 
         if (tipo.equals("OK")) {
-            String cuerpo = "<div style='font-family: Arial; padding: 20px; border: 1px solid #ddd;'>" + imgLogo
-                    + "<h2>Registro Exitoso</h2><p>Estimado <b>" + nombreContra + "</b>, se adjunta el acta consolidada.</p></div>";
+            String cuerpo = "<p>Estimado(a) <b>" + nombreContra + "</b>,</p><p>Se ha procesado exitosamente la asignación de numeración de postes. Adjunto a este correo encontrará el acta consolidada correspondiente.</p>";
             byte[] bytes = java.util.Base64.getDecoder().decode(pdfB64.trim().replaceAll("\\s", ""));
             mailer.enviarMailConAdjunto(correoDestino, "Acta de Registro de Numeración - EEASA", cuerpo, bytes, "Acta_Postes.pdf");
         } else {
-            String cuerpo = "<div style='font-family: Arial; padding: 20px; border: 1px solid #ddd;'>" + imgLogo
-                    + "<h2 style='color:red;'>Inconsistencias Detectadas</h2><p>Se detectaron errores y <b>no se guardó ningún registro</b>:</p>"
-                    + "<p>" + detalle + "</p><p>Revise el Excel adjunto.</p></div>";
+            String cuerpo = "<p>Estimado(a) <b>" + nombreContra + "</b>,</p><p><span style='color:#d9534f;font-weight:bold;'>Inconsistencias Detectadas:</span> Se detectaron errores y <b>no se guardó ningún registro</b>.</p><p>" + (detalle != null ? detalle : "") + "</p><p>Por favor revise el archivo Excel adjunto.</p>";
             byte[] bytes = java.util.Base64.getDecoder().decode(excelB64.trim().replaceAll("\\s", ""));
             mailer.enviarMailConAdjunto(correoDestino, "Reporte de Inconsistencias - EEASA", cuerpo, bytes, "Revision_Inconsistencias.xlsx");
         }

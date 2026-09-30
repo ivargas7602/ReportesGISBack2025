@@ -3583,6 +3583,9 @@ public class WSReporte {
             // 1. Extraemos el lote (es un JSONArray)
             JSONArray loteArray = json.getJSONArray("lote");
             List<Map<String, Object>> listaLote = new ArrayList<>();
+            System.out.println("El jsonInput recibido es: " + jsonInput);
+            System.out.println("El json object recibido es: " + json.toString());
+
 
             for (int i = 0; i < loteArray.length(); i++) {
                 JSONObject item = loteArray.getJSONObject(i);
@@ -3600,6 +3603,7 @@ public class WSReporte {
             int contraCod = json.optInt("contraCod", 0);
             String excelBase64 = json.optString("excelBase64", null);
             String pdfBase64 = json.optString("pdfBase64", null);
+            System.out.println("El contraCod recibido es: " + contraCod);
 
             // 3. Llamamos al nuevo método masivo consolidado
             String resultado = objReporte.guardarLotePostesMasivo(listaLote, excelBase64, pdfBase64, contraCod);
