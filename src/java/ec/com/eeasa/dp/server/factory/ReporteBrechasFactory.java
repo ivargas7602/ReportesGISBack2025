@@ -37,8 +37,8 @@ import java.util.List;
  */
 public class ReporteBrechasFactory {
 
-    private static final String ESQUEMA = "REPORTES_GIS";
-    // private static final String ESQUEMA = "REPORTES_GIS_PRUEBAS";
+    // private static final String ESQUEMA = "REPORTES_GIS";
+    private static final String ESQUEMA = "REPORTES_GIS_PRUEBAS";
 
     DataBaseObject dbo;
 
