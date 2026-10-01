@@ -42,7 +42,7 @@ public class EnviarMail implements Serializable {
     }
 
     public String enviarNotificacion(String destinatario, String cc, String asunto, String usuarioNombre, String cuerpo, byte[] contenidoAdjunto, String nombreArchivo) {
-        String boundary = "===Boundary_" + System.currentTimeMillis() + "===";
+        String boundary = "---Boundary_" + System.currentTimeMillis() + "---";
         String LINE_FEED = "\r\n";
 
         try {
