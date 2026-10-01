@@ -1212,6 +1212,43 @@ public class WSReporte {
         return outDataC.toString();
     }
 
+    @GET
+    @Path("/emailContratista")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String emailContratista(@QueryParam("contraCod") int contraCod) {
+        HashMap<String, Object> respuesta = new HashMap<String, Object>();
+        try {
+            ReporteImplement reporte = new ReporteImplement();
+            respuesta.put("email", reporte.obtenerEmailContratista(contraCod));
+        } catch (Exception ex) {
+            System.out.println("Error en WS emailContratista: " + ex.getMessage());
+            respuesta.put("email", "");
+        }
+        return new Formatter("JSON", respuesta).getData().toString();
+    }
+
+    @PUT
+    @Path("/actualizarEmailContratista")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String actualizarEmailContratista(String jsonInput) {
+        try {
+            JSONObject json = new JSONObject(jsonInput);
+            int contraCod = json.getInt("contraCod");
+            String email = json.isNull("email") ? null : json.getString("email");
+            String resultado = new ReporteImplement().actualizarEmailContratista(contraCod, email);
+            HashMap<String, Object> respuesta = new HashMap<String, Object>();
+            respuesta.put("RESULTADO", resultado);
+            return new Formatter("JSON", respuesta).getData().toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            HashMap<String, Object> respuesta = new HashMap<String, Object>();
+            respuesta.put("RESULTADO", "ERROR");
+            respuesta.put("message", ex.getMessage());
+            return new Formatter("JSON", respuesta).getData().toString();
+        }
+    }
+
     @POST
     @Path("/insertarContratistas")
     @Produces({MediaType.APPLICATION_JSON})
@@ -3603,10 +3640,11 @@ public class WSReporte {
             int contraCod = json.optInt("contraCod", 0);
             String excelBase64 = json.optString("excelBase64", null);
             String pdfBase64 = json.optString("pdfBase64", null);
+            String emailDestino = json.isNull("emailDestino") ? null : json.optString("emailDestino", null);
             System.out.println("El contraCod recibido es: " + contraCod);
 
             // 3. Llamamos al nuevo método masivo consolidado
-            String resultado = objReporte.guardarLotePostesMasivo(listaLote, excelBase64, pdfBase64, contraCod);
+            String resultado = objReporte.guardarLotePostesMasivo(listaLote, excelBase64, pdfBase64, contraCod, emailDestino);
 
             outData = "{\"status\": \"" + resultado + "\"}";
 

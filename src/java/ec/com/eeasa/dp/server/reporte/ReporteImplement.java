@@ -385,6 +385,20 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         return objReporteBrechas.selectContratistas();
     }
 
+    public String obtenerEmailContratista(int contraCod) throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        HashMap<String, Object> datos = factory.obtenerMailContratista(contraCod);
+        if (datos == null || datos.get("EMAIL") == null) {
+            return "";
+        }
+        return datos.get("EMAIL").toString();
+    }
+
+    public String actualizarEmailContratista(int contraCod, String email) throws Exception {
+        ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
+        return factory.actualizarEmailContratista(contraCod, email);
+    }
+
     public String insertarContratistas(
             Contratistas obj_contratistas
     ) throws Exception {
@@ -1010,7 +1024,7 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
 
     // ------------------- ENVIO DE CORREO CON NOTIFICACION ------------------------
     // Añadido Gabriel Medina
-    public String guardarLotePostesMasivo(List<Map<String, Object>> lote, String excelBase64, String pdfBase64, int contraCod) throws Exception {
+    public String guardarLotePostesMasivo(List<Map<String, Object>> lote, String excelBase64, String pdfBase64, int contraCod, String emailDestino) throws Exception {
         ReporteBrechasFactory factory = new ReporteBrechasFactory(getDB());
         java.sql.Connection conn = getDB().con.getConexion();
 
@@ -1057,14 +1071,14 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
                         excelTrabajo = java.util.Base64.getEncoder().encodeToString(tempExcel);
                     }
                 }
-                enviarCorreoUnico(factory, contraCod, "ERROR", logErrores.toString(), excelTrabajo, null);
+                enviarCorreoUnico(factory, contraCod, "ERROR", logErrores.toString(), excelTrabajo, null, emailDestino);
                 return "ERROR_LOTE";
             } else {
                 // TODO OK: Confirmamos los cambios
                 conn.commit();
 
                 // Enviamos el correo con el PDF INDIVIDUAL que generamos en el Front
-                enviarCorreoUnico(factory, contraCod, "OK", null, null, pdfBase64);
+                enviarCorreoUnico(factory, contraCod, "OK", null, null, pdfBase64, emailDestino);
                 return "OK";
             }
 
@@ -1083,22 +1097,29 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
     }
 
     // AHORA RECIBE EL FACTORY para reutilizar la conexión
-    private void enviarCorreoUnico(ReporteBrechasFactory factory, int contraCod, String tipo, String detalle, String excelB64, String pdfB64) throws Exception {
+    private void enviarCorreoUnico(ReporteBrechasFactory factory, int contraCod, String tipo, String detalle, String excelB64, String pdfB64, String emailDestino) throws Exception {
         System.out.println("Preparando para enviar correo al contratista con código: " + contraCod + ", tipo: " + tipo);
         HashMap<String, Object> datos = factory.obtenerMailContratista(contraCod);
-        if (datos == null) {
+        if (datos == null && (emailDestino == null || emailDestino.trim().isEmpty())) {
             return;
         }
 
-        String correoDestino = datos.get("EMAIL").toString();
-        String nombreContra = datos.get("NOMBRE_COMPLETO").toString();
+        Object emailRegistrado = datos == null ? null : datos.get("EMAIL");
+        String correoDestino = emailDestino != null && !emailDestino.trim().isEmpty()
+                ? emailDestino.trim()
+                : emailRegistrado == null ? "" : emailRegistrado.toString();
+        if (correoDestino.isEmpty()) {
+            return;
+        }
+        Object nombreRegistrado = datos == null ? null : datos.get("NOMBRE_COMPLETO");
+        String nombreContra = nombreRegistrado == null ? "contratista" : nombreRegistrado.toString();
         EnviarMail mailer = new EnviarMail();
         System.out.println("datos: " + datos);
 
         if (tipo.equals("OK")) {
             String cuerpo = "<p>Estimado(a) <b>" + nombreContra + "</b>,</p><p>Se ha procesado exitosamente la asignación de numeración de postes. Adjunto a este correo encontrará el acta consolidada correspondiente.</p>";
             byte[] bytes = java.util.Base64.getDecoder().decode(pdfB64.trim().replaceAll("\\s", ""));
-            mailer.enviarMailConAdjunto(correoDestino, "Acta de Registro de Numeración - EEASA", cuerpo, bytes, "Acta_Postes.pdf");
+            mailer.enviarMailConAdjunto(correoDestino, "Acta de Registro de Numeracion - EEASA", cuerpo, bytes, "Acta_Postes.pdf");
         } else {
             String cuerpo = "<p>Estimado(a) <b>" + nombreContra + "</b>,</p><p><span style='color:#d9534f;font-weight:bold;'>Inconsistencias Detectadas:</span> Se detectaron errores y <b>no se guardó ningún registro</b>.</p><p>" + (detalle != null ? detalle : "") + "</p><p>Por favor revise el archivo Excel adjunto.</p>";
             byte[] bytes = java.util.Base64.getDecoder().decode(excelB64.trim().replaceAll("\\s", ""));

@@ -616,6 +616,32 @@ public class ReporteBrechasFactory {
         return msg.toString();
     }
 
+    public String actualizarEmailContratista(int contraCod, String email) throws Exception {
+        for (HashMap<String, Object> contratista : selectContratistas()) {
+            Object codigo = contratista.get("DPNUM_CONTRA_COD");
+            if (codigo == null || Integer.parseInt(codigo.toString()) != contraCod) {
+                continue;
+            }
+
+            Contratistas objContratista = new Contratistas();
+            objContratista.setDPNUM_CONTRA_COD(codigo.toString());
+            objContratista.setDPNUM_CONTRA_CEDULA(textoContratista(contratista, "DPNUM_CONTRA_CEDULA"));
+            objContratista.setDPNUM_CONTRA_NOMBRE(textoContratista(contratista, "DPNUM_CONTRA_NOMBRE"));
+            objContratista.setDPNUM_CONTRA_APELLIDO(textoContratista(contratista, "DPNUM_CONTRA_APELLIDO"));
+            objContratista.setDPNUM_CONTRA_DIRECCION(textoContratista(contratista, "DPNUM_CONTRA_DIRECCION"));
+            objContratista.setDPNUM_CONTRA_CELULAR(textoContratista(contratista, "DPNUM_CONTRA_CELULAR"));
+            objContratista.setDPNUM_CONTRA_EMAIL(email);
+            objContratista.setDPRUS_CUENTA(textoContratista(contratista, "DPRUS_CUENTA"));
+            return actualizarContratistas(objContratista);
+        }
+        return "CONTRATISTA_NO_ENCONTRADO";
+    }
+
+    private String textoContratista(HashMap<String, Object> contratista, String campo) {
+        Object valor = contratista.get(campo);
+        return valor == null ? null : valor.toString();
+    }
+
     public String eliminarContratistas(
             Contratistas obj_contratistas
     ) throws Exception {
