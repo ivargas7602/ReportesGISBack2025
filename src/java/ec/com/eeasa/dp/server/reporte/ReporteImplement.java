@@ -516,6 +516,12 @@ public class ReporteImplement extends ReportesRemoteServiceServlet {
         return objReporteBrechas.selectReporteNumeracion(fecha, fecha2, contra, clase, opcion);
     }
 
+    // Divisiones / lotes registrados (Con Numeración) para el Reporte Numeración
+    public ArrayList<HashMap<String, Object>> selectPostesDetalleReporte(Date fecha, Date fecha2, Number contra, Number clase, String opcion) throws Exception {
+        ReporteBrechasFactory objReporteBrechas = new ReporteBrechasFactory(getDB());
+        return objReporteBrechas.selectPostesDetalleReporte(fecha, fecha2, contra, clase, opcion);
+    }
+
     //Agregado por ANavas 16/12/2024
     public ArrayList<HashMap<String, Object>> selectReporteNumeracionByNumberEquip(Number numEquip, Number numEquipInferior,
             Number numEquipSuperior, Number clase) throws Exception {

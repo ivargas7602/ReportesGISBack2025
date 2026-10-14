@@ -1691,6 +1691,11 @@ public class WSReporte {
             }
             codCla = Integer.parseInt(clase);
             hmReportesC = objReporte.selectReporteNumeracion(fechaM1, fechaM2, codCOn, codCla, opcion);
+            // Se agregan las divisiones/lotes registrados (Con Numeración) al mismo resultado
+            ArrayList<HashMap<String, Object>> hmDetalle = objReporte.selectPostesDetalleReporte(fechaM1, fechaM2, codCOn, codCla, opcion);
+            if (hmDetalle != null && !hmDetalle.isEmpty()) {
+                hmReportesC.addAll(hmDetalle);
+            }
             Formatter fm = new Formatter("JSON", hmReportesC);
             outDataC = fm.getData().toString();
         } catch (Exception ex) {

@@ -838,6 +838,24 @@ public class ReporteBrechasFactory {
         return contratista;
     }
 
+    /**
+     * Divisiones / lotes registrados en "Registro Postes Numerados" (Con Numeración),
+     * reconstruidos agrupando los postes del detalle por bloque + sector + responsable
+     * y numeración consecutiva.
+     */
+    public ArrayList<HashMap<String, Object>> selectPostesDetalleReporte(Date fecha, Date fecha2, Number contra, Number clase, String opcion) throws Exception {
+        ArrayList<HashMap<String, Object>> lista = new ArrayList<HashMap<String, Object>>();
+        String sql_fun = ESQUEMA + ".PKG_DBS_REPORTE.SP_SELECT_POSTES_DETALLE_REPOR(?,?,?,?,?,?)";
+        ArrayList<Object> parametros = new ArrayList<Object>();
+        parametros.add(fecha);
+        parametros.add(fecha2);
+        parametros.add(contra);
+        parametros.add(clase);
+        parametros.add(opcion);
+        lista = dbo.SQL_CALL_PROCEDURE(sql_fun, parametros);
+        return lista;
+    }
+
     //Agregado por ANavas 16/12/2024
     public ArrayList<HashMap<String, Object>> selectReporteNumeracionByNumberEquip(Number numEquip, Number numEquipInferior,
             Number numEquipSuperior, Number clase) throws Exception {
